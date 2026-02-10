@@ -1,101 +1,70 @@
-import Image from "next/image";
+import { fetchAllNews } from "@/lib/news";
+import { CATEGORIES, Category, Article } from "@/lib/types";
+import { MOCK_ARTICLES } from "@/lib/mock-data";
+import ArticleCard from "@/components/ArticleCard";
+import Link from "next/link";
 
-export default function Home() {
+export const revalidate = 3600; // ISR: revalidate every hour
+
+export default async function HomePage() {
+  let allNews: Record<Category, Article[]>;
+
+  try {
+    allNews = await fetchAllNews();
+    // If every category came back empty, fall back to mock
+    const hasAny = Object.values(allNews).some((a) => a.length > 0);
+    if (!hasAny) allNews = MOCK_ARTICLES;
+  } catch {
+    allNews = MOCK_ARTICLES;
+  }
+
+  // Get the top story from each category for the hero section
+  const topStories = CATEGORIES.map((cat) => allNews[cat.slug]?.[0]).filter(Boolean);
+  const heroStory = topStories.find((a) => a?.isBreaking) || topStories[0];
+  const restTopStories = topStories.filter((a) => a?.id !== heroStory?.id).slice(0, 4);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      {/* Hero Section */}
+      {heroStory && (
+        <section className="border-b border-neutral-300 pb-8 mb-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="md:col-span-2">
+              <ArticleCard article={heroStory} featured />
+            </div>
+            <div className="border-l-0 md:border-l border-neutral-200 md:pl-8 space-y-6">
+              {restTopStories.slice(0, 3).map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      {/* Category Sections */}
+      {CATEGORIES.map((cat) => {
+        const articles = allNews[cat.slug] || [];
+        if (articles.length === 0) return null;
+
+        return (
+          <section key={cat.slug} className="mb-12">
+            <div className="flex items-center justify-between border-b-2 border-signal-black pb-2 mb-6">
+              <h2 className="font-headline text-2xl font-bold">{cat.label}</h2>
+              <Link
+                href={`/category/${cat.slug}`}
+                className="text-xs uppercase tracking-widest text-signal-red hover:underline font-sans"
+              >
+                View All
+              </Link>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+              {articles.slice(0, 3).map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
