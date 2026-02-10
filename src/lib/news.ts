@@ -106,7 +106,7 @@ Guidelines:
 }
 
 export async function fetchAllNews(): Promise<Record<Category, Article[]>> {
-  const categories: Category[] = ["global", "sports", "entertainment", "technology", "business"];
+  const categories = CATEGORIES.map((c) => c.slug);
 
   const results = await Promise.allSettled(
     categories.map((cat) => fetchNewsForCategory(cat))
