@@ -34,7 +34,10 @@ export async function getArticlesByCategory(
   category: Category,
   limit = 10
 ): Promise<Article[]> {
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
     .from("articles")
     .select("*")
     .eq("category", category)
@@ -50,7 +53,10 @@ export async function getArticlesByCategory(
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase
     .from("articles")
     .select("*")
     .eq("slug", slug)
@@ -61,7 +67,10 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 export async function getArticleById(id: string): Promise<Article | null> {
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase
     .from("articles")
     .select("*")
     .eq("id", id)
@@ -85,7 +94,10 @@ export async function getRelatedArticles(
   article: Article,
   limit = 3
 ): Promise<Article[]> {
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
     .from("articles")
     .select("*")
     .eq("category", article.category)
@@ -141,7 +153,10 @@ export async function submitFeedback(entry: {
   tags: string[];
   comment: string;
 }): Promise<void> {
-  const { error } = await getSupabase().from("feedback").insert({
+  const supabase = getSupabase();
+  if (!supabase) throw new Error("Supabase not configured");
+
+  const { error } = await supabase.from("feedback").insert({
     article_id: entry.articleId,
     accurate: entry.accurate,
     balanced: entry.balanced,
@@ -168,7 +183,10 @@ export async function getFeedbackSummary(
     recentComments: [],
   };
 
-  const { data, error } = await getSupabase()
+  const supabase = getSupabase();
+  if (!supabase) return empty;
+
+  const { data, error } = await supabase
     .from("feedback")
     .select("*")
     .eq("article_id", articleId)
