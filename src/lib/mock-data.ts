@@ -3,95 +3,99 @@ import { Article, Category } from "./types";
 const now = new Date().toISOString();
 
 export const MOCK_ARTICLES: Record<Category, Article[]> = {
-  global: [
+  politics: [
     {
-      id: "global-1",
-      headline: "EU and African Union Reach Landmark Migration and Trade Agreement",
+      id: "politics-1",
+      headline: "Bipartisan Infrastructure Oversight Bill Clears Senate with Rare Supermajority",
       summary:
-        "After months of negotiations, European and African leaders have signed a comprehensive deal addressing migration flows, trade barriers, and climate investment across both continents.",
-      body: `European Commission President and African Union Chairperson announced the agreement at a joint press conference in Brussels on Sunday, describing it as a "new chapter" in relations between the two continents. The deal covers migration management, tariff reductions, and a €45 billion climate adaptation fund.
+        "A bill creating an independent oversight board for federal infrastructure spending passed the Senate 78-19, drawing support from both parties amid concerns over project delays and cost overruns.",
+      body: `The U.S. Senate passed the Infrastructure Accountability Act on Thursday with a 78-19 vote, establishing an independent oversight board to monitor the allocation and spending of federal infrastructure funds. The bill now heads to the House, where leadership has signaled support.
 
-Under the migration provisions, the EU will create 300,000 legal work visas annually for African nationals in sectors facing labor shortages, including healthcare, agriculture, and technology. In return, participating African nations have agreed to streamline the processing of returning migrants who do not qualify for asylum.
+The legislation creates a 12-member board — six appointed by each party — with subpoena power to investigate project delays, cost overruns, and contracting irregularities. The board would publish quarterly public reports on spending progress across all major infrastructure categories, including roads, bridges, broadband, and clean energy projects.
 
-The trade component eliminates tariffs on 85% of goods flowing between the two blocs over a five-year period. Agricultural products, long a sticking point in negotiations, will see graduated tariff reductions with safeguards for smallholder farmers on both continents.
+Supporters from both parties framed the bill as a response to constituent frustration over the pace of infrastructure improvements. "People were promised better roads and bridges. They deserve to know where the money is going," said the bill's lead Republican sponsor. The Democratic co-sponsor emphasized that transparency "protects the investment taxpayers have made."
 
-Critics on both sides have raised concerns. European labor unions worry about wage suppression, while some African civil society groups argue the migration provisions don't go far enough. "This is a starting framework, not the final word," said one senior EU diplomat who requested anonymity to discuss the negotiations.
+Opposition came from a small group of senators who argued the board represents unnecessary bureaucracy that could further slow project delivery. "We don't need another layer of government watching government," argued one dissenting senator. Several state governors have also expressed concern about federal oversight of projects managed at the state level.
 
-The climate adaptation fund, financed jointly by EU member states and private sector commitments, will focus on renewable energy infrastructure, drought-resistant agriculture, and coastal protection in the most vulnerable African nations. Projects are expected to begin disbursement by late 2026.`,
-      category: "global",
-      sources: ["Reuters", "Al Jazeera", "Financial Times"],
+The White House issued a statement supporting the bill, calling it "a commonsense step to ensure accountability." Political analysts noted the rare bipartisan cooperation, suggesting infrastructure oversight may be one of the few areas where cross-party legislation remains achievable in the current Congress.`,
+      category: "politics",
+      sources: ["Associated Press", "Politico", "The Hill"],
+      timestamp: now,
+      isBreaking: false,
+    },
+    {
+      id: "politics-2",
+      headline: "Supreme Court Agrees to Hear Major Case on Federal Agency Rulemaking Power",
+      summary:
+        "The court will consider whether federal agencies can issue regulations with the force of law without explicit congressional authorization, a case that could reshape the regulatory landscape.",
+      body: `The U.S. Supreme Court announced Monday it will hear a challenge to the Environmental Protection Agency's authority to set emissions standards for power plants, in a case that legal scholars say could fundamentally alter how federal agencies create and enforce regulations.
+
+The case, brought by a coalition of states and energy companies, argues that the EPA exceeded its statutory authority by setting strict carbon emissions limits without explicit direction from Congress. The petitioners contend that regulations with major economic impact require clear legislative authorization — a principle known as the "major questions doctrine."
+
+The Biden administration's solicitor general will defend the EPA's position, arguing that Congress delegated broad regulatory authority to the agency through the Clean Air Act. Environmental groups have filed amicus briefs warning that a ruling against the EPA could undermine decades of environmental protections.
+
+Business groups see the case as an opportunity to curtail what they describe as regulatory overreach across multiple agencies. "This isn't just about the EPA — it's about whether unelected bureaucrats can make rules that reshape entire industries," said the president of a major business lobby.
+
+Constitutional law experts note the case arrives as the court continues to reconsider the scope of federal regulatory power. A ruling is expected by June 2027, and could affect regulations across agencies including the FDA, SEC, and FTC.`,
+      category: "politics",
+      sources: ["SCOTUSblog", "The Washington Post", "Reuters"],
+      timestamp: now,
+      isBreaking: false,
+    },
+    {
+      id: "politics-3",
+      headline: "Midterm Campaign Finance Reports Reveal Record Small-Dollar Donations",
+      summary:
+        "Federal Election Commission data shows small-dollar donations under $200 have surpassed large donations for the first time in a midterm cycle, reflecting shifts in how campaigns are funded.",
+      body: `New campaign finance data released by the Federal Election Commission reveals that small-dollar donations — contributions under $200 — accounted for 54% of total individual contributions in the current midterm election cycle, surpassing large-dollar donations for the first time in a non-presidential year.
+
+The shift reflects the growing effectiveness of digital fundraising platforms and social media-driven campaign appeals. Both parties have seen increases in small-dollar giving, though the trend is particularly pronounced among Democratic candidates and progressive challengers in competitive districts.
+
+Republican strategists note that their party's small-dollar base has also grown significantly, driven by text-message fundraising and appeals tied to high-profile political controversies. "The grassroots fundraising revolution isn't owned by one party," said a senior GOP campaign consultant.
+
+Campaign finance reform advocates offered mixed reactions. Some praised the democratization of political giving, arguing it reduces candidates' dependence on wealthy donors and corporate PACs. Others cautioned that small-dollar fundraising can be driven by polarizing rhetoric and outrage cycles rather than substantive policy engagement.
+
+The data also showed that overall campaign spending is on pace to set a new midterm record, with total spending projected to exceed $9 billion. Super PAC spending remains substantial despite the small-dollar surge, accounting for approximately 30% of total election-related expenditures.`,
+      category: "politics",
+      sources: ["OpenSecrets", "The New York Times", "FEC"],
+      timestamp: now,
+      isBreaking: false,
+    },
+    {
+      id: "politics-4",
+      headline: "Congress Passes Bipartisan Bill Restricting Government Use of Facial Recognition",
+      summary:
+        "New legislation limits federal law enforcement's use of facial recognition technology, requiring warrants for real-time surveillance and banning its use at protests and religious gatherings.",
+      body: `Congress passed the Facial Recognition Accountability Act on Wednesday, sending to the President's desk a bill that imposes the first comprehensive federal restrictions on government use of facial recognition technology. The bill passed the House 291-140 and the Senate 67-30.
+
+The legislation requires federal law enforcement agencies to obtain a warrant before using real-time facial recognition surveillance, prohibits its use at protests, religious gatherings, and polling places, and mandates annual accuracy audits with results published publicly. Agencies must also disclose when facial recognition evidence is used in criminal prosecutions.
+
+Civil liberties organizations praised the bill as a long-overdue protection. "Facial recognition in the hands of government is a surveillance tool that disproportionately affects communities of color and threatens the right to anonymous free assembly," said a director at the ACLU.
+
+Law enforcement groups offered qualified support for the warrant requirement but expressed concern that restrictions at protests could hinder investigations of criminal activity. The FBI director testified during committee hearings that facial recognition has been instrumental in identifying suspects in violent crimes and terrorism cases.
+
+Technology companies that develop facial recognition systems were notably divided. Some supported the regulation as providing legal clarity, while others warned the accuracy audit requirements could be technically burdensome. The bill does not restrict private sector use of the technology, which advocates say should be addressed in separate legislation.`,
+      category: "politics",
+      sources: ["The Washington Post", "Wired", "Associated Press"],
       timestamp: now,
       isBreaking: true,
     },
     {
-      id: "global-2",
-      headline: "Japan Announces Major Defense Overhaul Amid Regional Tensions",
+      id: "politics-5",
+      headline: "Governors Form Bipartisan Coalition to Address Housing Affordability Crisis",
       summary:
-        "Tokyo unveils its largest military restructuring since World War II, including expanded naval capabilities and a new cyber defense command, drawing mixed reactions from neighboring states.",
-      body: `Japan's Prime Minister presented a sweeping defense reform package to parliament on Monday, proposing a 25% increase in military spending over the next three years and the creation of a unified cyber and space defense command. The plan represents the most significant shift in Japan's defense posture in decades.
+        "Twelve governors from both parties announced a joint initiative to tackle housing costs, proposing model legislation to reduce zoning barriers, expand tax incentives, and streamline permitting.",
+      body: `A coalition of twelve governors — seven Democrats and five Republicans — announced a joint housing affordability initiative on Tuesday, unveiling model legislation designed to be adapted and passed at the state level. The proposal addresses zoning reform, permitting delays, and incentives for workforce housing construction.
 
-The restructuring includes the acquisition of long-range cruise missiles capable of striking targets up to 1,500 kilometers away, a capability Japan has historically avoided. Defense officials emphasized these weapons are "exclusively defensive" and intended to deter potential threats in the region.
+The model legislation includes provisions to allow multi-family housing by right in areas currently zoned exclusively for single-family homes, cap local permitting timelines at 90 days for qualifying projects, and create state-level tax credits for developers who build housing affordable to families earning less than 80% of area median income.
 
-China's foreign ministry expressed "grave concern" over the announcement, calling it a departure from Japan's post-war pacifist constitution. South Korea's response was more measured, with Seoul noting the importance of "transparent communication" about military buildups in the region.
+"Housing costs are the number one economic issue I hear about from constituents, regardless of party," said the Democratic governor leading the coalition. His Republican counterpart emphasized the market-based elements: "This isn't about government housing — it's about removing government barriers to building."
 
-The United States welcomed the move, with the Pentagon describing it as "a positive step toward shared burden-bearing in the Indo-Pacific." The expanded capabilities are expected to integrate closely with existing U.S.-Japan alliance frameworks.
+The initiative faces opposition from local government associations, which argue that zoning decisions should remain under municipal control. Some neighborhood groups have also pushed back against density increases in suburban areas.
 
-Domestic opinion in Japan remains divided. Polls show roughly 52% of Japanese citizens support increased defense spending, while significant opposition remains, particularly among older generations who remember the consequences of militarism. Constitutional scholars have questioned whether the long-range strike capability is compatible with Article 9 of Japan's constitution.`,
-      category: "global",
-      sources: ["Associated Press", "NHK", "South China Morning Post"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "global-3",
-      headline: "WHO Declares End to Mpox Public Health Emergency in Central Africa",
-      summary:
-        "The World Health Organization has lifted its emergency designation for the mpox outbreak in the Democratic Republic of Congo and surrounding nations, citing successful vaccination campaigns.",
-      body: `The World Health Organization announced Sunday that the mpox outbreak in Central Africa no longer constitutes a Public Health Emergency of International Concern, marking the end of an 18-month emergency period. The decision follows a dramatic decline in new cases across the affected region.
-
-Vaccination campaigns, which reached over 12 million people in the Democratic Republic of Congo, Republic of Congo, and neighboring countries, were credited as the primary driver of the outbreak's containment. The WHO noted that case counts had fallen 94% from their peak.
-
-"This is a testament to what the global health community can achieve when resources are mobilized quickly and equitably," said the WHO Director-General. However, he cautioned that surveillance must continue and that the virus remains endemic in parts of Central Africa.
-
-Public health experts praised the response but noted lessons for future outbreaks. The initial vaccine rollout faced significant delays due to manufacturing bottlenecks and distribution challenges in remote areas. Several NGOs called for permanent investment in regional health infrastructure rather than emergency-only funding models.`,
-      category: "global",
-      sources: ["WHO", "BBC News", "The Lancet"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "global-4",
-      headline: "Brazil's Supreme Court Rules on Landmark Indigenous Land Rights Case",
-      summary:
-        "In a closely watched decision, Brazil's highest court has upheld indigenous land claims in the Amazon, rejecting challenges from agricultural interests in a 7-4 ruling.",
-      body: `Brazil's Supreme Federal Tribunal ruled on Friday that indigenous communities hold constitutional rights to ancestral lands they occupied prior to the 1988 constitution, rejecting the so-called "temporal framework" argument pushed by agricultural lobbies. The 7-4 decision is expected to affect dozens of pending land disputes.
-
-The ruling affirms that indigenous land rights are "original rights" predating the formation of the Brazilian state, and cannot be limited by arbitrary cutoff dates. Chief Justice wrote in the majority opinion that the constitution "recognizes, rather than grants" these rights.
-
-Agricultural industry groups expressed disappointment, warning the decision could affect food production in regions bordering indigenous territories. The Confederation of Agriculture estimated that up to 5 million hectares could be affected by pending demarcation claims.
-
-Indigenous rights organizations celebrated the ruling as historic. Leaders from several Amazonian communities traveled to Brasília for the announcement. Environmental groups noted the decision could slow deforestation, as indigenous-managed lands have consistently shown lower deforestation rates than surrounding areas.
-
-The ruling does not automatically resolve individual land disputes but establishes the legal framework under which they will be adjudicated. The government now faces the challenge of implementing demarcation processes while managing tensions between indigenous communities and established agricultural operations.`,
-      category: "global",
-      sources: ["Reuters", "Folha de São Paulo", "The Guardian"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "global-5",
-      headline: "India and Pakistan Resume Diplomatic Talks After Two-Year Freeze",
-      summary:
-        "Senior diplomats from India and Pakistan met in a Gulf state for the first formal bilateral talks since 2024, discussing trade normalization and the disputed Kashmir region.",
-      body: `Indian and Pakistani foreign secretaries held two days of talks in Muscat, Oman, marking the first formal diplomatic engagement between the nuclear-armed neighbors since relations broke down in early 2024. Both sides described the discussions as "constructive" without announcing concrete agreements.
-
-The talks covered trade normalization, the status of diplomatic missions, and what officials described as "humanitarian matters" — widely understood to include prisoner exchanges and divided families. The more contentious issue of Kashmir was discussed but, as expected, produced no breakthrough.
-
-Regional analysts characterized the resumption of dialogue as significant in itself. "The fact that both governments agreed to sit at the same table signals a recognition that the status quo is unsustainable," said a senior fellow at a New Delhi think tank.
-
-Pakistan's foreign ministry emphasized the importance of addressing "core disputes" for lasting peace, while India's external affairs ministry focused on the need for "a terrorism-free environment" as a prerequisite for deeper engagement. Both sides agreed to continue discussions at a date to be determined.`,
-      category: "global",
-      sources: ["Associated Press", "Dawn", "The Hindu"],
+Housing policy experts noted the significance of the bipartisan framing. "Housing affordability has historically been seen as a progressive issue, but the reality is that high housing costs affect red and blue states equally," said a researcher at a housing policy institute. The coalition plans to introduce legislation in participating states during the next legislative session.`,
+      category: "politics",
+      sources: ["Politico", "The Wall Street Journal", "NPR"],
       timestamp: now,
       isBreaking: false,
     },
@@ -195,200 +199,6 @@ The announcement sent QubitCore's stock up 34% in after-hours trading and booste
       isBreaking: false,
     },
   ],
-  sports: [
-    {
-      id: "sports-1",
-      headline: "Historic Upset at Australian Open as Unseeded Player Claims Title",
-      summary:
-        "World No. 47 Marco Bellini stunned the tennis world by defeating three-time champion Novak Djokovic in a five-set final, becoming the lowest-ranked player to win a Grand Slam since 2009.",
-      body: `In one of the most remarkable Grand Slam finals in recent memory, Italian qualifier Marco Bellini defeated Novak Djokovic 6-7, 7-5, 4-6, 6-3, 7-5 in a grueling four-hour and 22-minute match at Melbourne Park. The 23-year-old became the lowest-ranked player to win a major title since Juan Martín del Potro's 2009 US Open victory.
-
-Bellini, who entered the tournament having never advanced past the third round of a Grand Slam, showed remarkable composure throughout the match. He saved three championship points in the fifth set before breaking Djokovic's serve at 6-5 with a stunning backhand return winner.
-
-"I don't have words. I keep thinking I'm going to wake up," Bellini said in an emotional on-court interview. Djokovic, gracious in defeat, praised his opponent: "He played incredible tennis today. The future of this sport is in good hands."
-
-The victory caps an extraordinary fortnight for Bellini, who defeated three seeded players en route to the final, including world No. 5 Carlos Alcaraz in the semifinals. His aggressive baseline game and exceptional fitness were evident throughout the tournament.
-
-Tennis analysts noted that Bellini's victory continues a trend of increasing competitiveness in men's tennis as the sport transitions beyond the dominance of the "Big Three" era. His ranking is projected to rise to approximately No. 8 when the new rankings are released.`,
-      category: "sports",
-      sources: ["ESPN", "Tennis Magazine", "BBC Sport"],
-      timestamp: now,
-      isBreaking: true,
-    },
-    {
-      id: "sports-2",
-      headline: "FIFA Confirms Expanded Club World Cup Format for 2027 Edition",
-      summary:
-        "Football's world governing body has approved a 48-team format for the 2027 Club World Cup, with increased revenue sharing for participating clubs and their domestic leagues.",
-      body: `FIFA announced on Friday the approval of an expanded 48-team Club World Cup beginning in 2027, building on the 32-team format introduced in 2025. The decision came after months of negotiations with clubs, leagues, and player unions over scheduling, compensation, and player welfare.
-
-The expanded tournament will feature 48 clubs across 12 groups, with matches played at venues across the host country over a five-week period in June and July. FIFA projected total revenue of $4.5 billion, with 50% allocated directly to participating clubs — a significant increase from the current distribution model.
-
-European leagues had initially opposed the expansion, citing player fatigue and scheduling conflicts. The compromise includes mandatory rest periods for participating players and a commitment to reduce international match calendar congestion elsewhere. La Liga and the Premier League issued a joint statement describing the agreement as "workable but not ideal."
-
-Player unions expressed ongoing concerns about the cumulative burden on elite athletes. "The calendar is being stretched to its limits," said a FIFPRO spokesperson. "We've secured important protections in this agreement, but the fundamental tension between commercial interests and player welfare remains."
-
-The bidding process for the 2027 host country is expected to begin in the coming months, with Saudi Arabia, the United States, and China considered frontrunners.`,
-      category: "sports",
-      sources: ["BBC Sport", "The Athletic", "Marca"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "sports-3",
-      headline: "WNBA Announces Record-Breaking Television Deal Worth $2.2 Billion",
-      summary:
-        "The Women's National Basketball Association has signed an 11-year media rights agreement that represents a tenfold increase over its previous deal, reflecting surging interest in women's professional basketball.",
-      body: `The WNBA announced a landmark 11-year media rights deal worth $2.2 billion on Monday, a dramatic increase from the $60 million annual value of its previous contract. The agreement spans multiple broadcast and streaming partners and begins with the 2026 season.
-
-The deal reflects explosive growth in the league's popularity, driven by a new generation of stars and increased cultural visibility. Average attendance rose 45% last season, while television viewership more than doubled. Commissioner Cathy Engelbert called it "a transformative moment for women's sports."
-
-Under the new agreement, the WNBA salary cap is projected to increase significantly, with maximum player salaries potentially reaching $700,000 by the deal's final year — still well below NBA figures but a substantial improvement from current levels. The league also plans to expand from 13 to 16 teams by 2028.
-
-Player advocacy played a significant role in the negotiations. The WNBA Players Association had pushed for a greater share of league revenue, and the new collective bargaining agreement is expected to increase the players' revenue share from approximately 9% to 20%.
-
-Sports business analysts noted the deal validates the broader trend of increased investment in women's professional sports. "This isn't a charity case — it's a business case," said a sports media professor at NYU. "The audience is there, the engagement metrics are there, and now the money is following."`,
-      category: "sports",
-      sources: ["ESPN", "Sports Business Journal", "Associated Press"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "sports-4",
-      headline: "Olympic Committee Adds Five New Sports for 2032 Brisbane Games",
-      summary:
-        "The IOC has approved cricket, flag football, squash, kickboxing, and drone racing as new sports for the Brisbane Olympics, aiming to attract younger global audiences.",
-      body: `The International Olympic Committee voted on Saturday to include five new sports in the 2032 Brisbane Olympics: cricket (T20 format), flag football, squash, kickboxing, and drone racing. The additions reflect the IOC's ongoing effort to modernize the Games and expand their global appeal.
-
-Cricket's inclusion is particularly significant, potentially bringing billions of fans from South Asia and other cricket-playing nations into closer engagement with the Olympic movement. The T20 format, with matches lasting approximately three hours, was chosen for its spectator-friendly pace.
-
-Flag football's addition follows years of lobbying by the NFL and International Federation of American Football. The non-contact version of the sport has been growing rapidly worldwide, particularly in Europe and Asia. The NFL has committed to supporting grassroots development programs in 50 countries.
-
-Drone racing, the most unconventional addition, represents the IOC's first foray into technology-driven competitive events. The sport involves pilots remotely navigating small quadcopters through obstacle courses at speeds exceeding 150 km/h. The Drone Racing League partnered with the bid.
-
-Some traditional Olympic sports advocates expressed concern about the expanding program. "Every addition puts pressure on existing sports," noted a former IOC committee member. The total number of athletes at the 2032 Games is expected to remain capped at approximately 10,500, meaning some existing sports may see reduced participation quotas.`,
-      category: "sports",
-      sources: ["Olympic Channel", "BBC Sport", "Associated Press"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "sports-5",
-      headline: "Formula 1 Confirms New Race in Rwanda as Africa Returns to Calendar",
-      summary:
-        "F1 has announced a street circuit race in Kigali starting in 2027, marking the first African Grand Prix since South Africa hosted in 1993 and expanding the sport's global footprint.",
-      body: `Formula 1 confirmed on Wednesday that Kigali, Rwanda will host an African Grand Prix beginning in 2027, ending a 34-year absence of the continent from the racing calendar. The race will take place on a purpose-built street circuit in the Rwandan capital, with the government committing $300 million in infrastructure investment.
-
-The announcement was made jointly by F1 CEO Stefano Domenicali and Rwandan President Paul Kagame. The circuit will wind through central Kigali, incorporating views of the city's distinctive hills and modern skyline. The race is scheduled for September, taking advantage of the dry season.
-
-F1's decision follows years of interest from multiple African nations, including South Africa, Nigeria, and Morocco. Rwanda's selection was attributed to its modern infrastructure, political stability, and the government's aggressive pursuit of international sporting events.
-
-The move has been broadly welcomed in the motorsport community. Lewis Hamilton, who has long advocated for an African Grand Prix, called it "one of the most important moments in our sport's history." However, some human rights organizations have raised concerns about Rwanda's political freedoms, echoing criticisms leveled at other F1 host nations.
-
-Commercial partners have responded enthusiastically, with several major sponsors reportedly increasing their F1 commitments in anticipation of the expanded African market. The continent's young and rapidly growing population represents a significant commercial opportunity for the sport.`,
-      category: "sports",
-      sources: ["Autosport", "BBC Sport", "The New York Times"],
-      timestamp: now,
-      isBreaking: false,
-    },
-  ],
-  entertainment: [
-    {
-      id: "ent-1",
-      headline: "Cannes Film Festival Unveils 2026 Lineup with Record Number of Female Directors",
-      summary:
-        "The 79th Cannes Film Festival has announced its official selection, featuring 11 films directed by women out of 21 competition slots — a record for the world's most prestigious film event.",
-      body: `The Cannes Film Festival announced its 2026 Official Selection on Thursday, with a competition lineup that includes 11 films directed by women — the highest proportion in the festival's 79-year history. Festival president Iris Knobloch described the selection as reflecting "the reality of cinema today."
-
-Among the most anticipated entries are Greta Gerwig's adaptation of C.S. Lewis's "The Chronicles of Narnia," Chloé Zhao's sci-fi epic "Wanderers," and a return to competition for Jane Campion with "The Inland Sea." Denis Villeneuve and Park Chan-wook also feature in the lineup with new works.
-
-The selection drew praise from industry groups who have long pushed for greater representation at major festivals. Women in Film called it "a milestone that should become the norm." However, some critics cautioned against treating the numbers as evidence that systemic barriers have been dismantled.
-
-The festival will also debut a new section dedicated to AI-assisted filmmaking, showcasing five short films created in collaboration between human directors and AI tools. The decision is controversial, with some filmmakers' guilds arguing it legitimizes a technology they see as threatening creative jobs.
-
-Cannes runs from May 12-23, and ticket demand is reportedly at an all-time high. The festival's economic impact on the Riviera region is estimated at €250 million annually.`,
-      category: "entertainment",
-      sources: ["Variety", "Screen Daily", "The Hollywood Reporter"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "ent-2",
-      headline: "Beyoncé Announces Global Stadium Tour with Immersive AR Experience",
-      summary:
-        "The Grammy-winning artist revealed a 58-date world tour incorporating augmented reality technology that transforms each venue with visual effects visible through a companion smartphone app.",
-      body: `Beyoncé announced on Sunday a 58-date global stadium tour beginning in September 2026, featuring what producers describe as the most technologically ambitious live concert experience ever attempted. The tour will incorporate real-time augmented reality visual effects visible through attendees' smartphones.
-
-The AR technology, developed in partnership with a major tech company, will overlay digital visual effects onto the stadium environment in real time, synchronized with the live performance. Each venue will feature unique visual narratives, meaning no two shows will look identical through the AR layer.
-
-Ticket prices range from $85 for upper-level seats to $850 for floor access, with a new "community access" tier reserving 5% of seats at $35 for lottery winners. The pricing structure attempts to address criticism of escalating concert ticket costs that has plagued the live entertainment industry.
-
-The tour will visit 30 cities across North America, Europe, Asia, Africa, and South America, including first-time stops in Lagos, Mumbai, and Bangkok. Promoter Live Nation estimated total gross revenue could exceed $2 billion, which would set a new touring record.
-
-Music industry analysts noted the tour's implications for the future of live entertainment. "This could redefine what audiences expect from a concert," said a Billboard senior editor. "But it also raises questions about whether technology enhances or distracts from the human connection that makes live music special."`,
-      category: "entertainment",
-      sources: ["Billboard", "Rolling Stone", "The New York Times"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "ent-3",
-      headline: "Streaming Platforms Report First-Ever Decline in Global Subscriber Growth",
-      summary:
-        "Combined subscriber numbers across major streaming services dipped for the first time in Q4 2025, signaling market maturation and intensifying competition for viewer attention.",
-      body: `For the first time since the launch of the modern streaming era, the combined global subscriber base of the five largest streaming platforms — Netflix, Disney+, Amazon Prime Video, Apple TV+, and Max — declined in the fourth quarter of 2025, according to industry data published this week. Total subscribers fell by approximately 2.3 million to 1.12 billion.
-
-Netflix, long the industry leader, maintained its subscriber base but reported its slowest growth in company history. Disney+ saw the largest decline, losing 4.1 million subscribers following a price increase and the removal of several popular library titles. Amazon and Apple showed modest gains that partially offset the overall decline.
-
-Industry analysts attribute the shift to market saturation, subscriber fatigue, and the cumulative impact of price increases across platforms. "Consumers have a finite entertainment budget," said a media analyst at MoffettNathanson. "When every service raises prices simultaneously, some subscribers inevitably make choices."
-
-The platforms are responding with divergent strategies. Netflix is doubling down on live programming, including sports and events. Disney is exploring bundling more aggressively with its other properties. Meanwhile, smaller services are considering mergers or niche repositioning.
-
-The data doesn't necessarily signal the beginning of a streaming decline, analysts cautioned, but rather the end of the pandemic-driven growth era. The industry is expected to stabilize around current levels, with growth shifting to emerging markets in Africa, Southeast Asia, and Latin America.`,
-      category: "entertainment",
-      sources: ["Variety", "The Wall Street Journal", "Bloomberg"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "ent-4",
-      headline: "British Museum Reaches Agreement to Return Parthenon Marbles to Greece",
-      summary:
-        "After decades of diplomatic tension, the British Museum and Greek government have announced a deal that will see the Elgin Marbles returned to Athens in exchange for a rotating loan of Greek antiquities.",
-      body: `The British Museum and the Greek government announced a landmark agreement on Friday to return the Parthenon Marbles to Athens, resolving one of the longest-running cultural heritage disputes in the world. The sculptures, removed from the Parthenon by Lord Elgin in the early 19th century, will be transferred over a two-year period beginning in 2027.
-
-In exchange, Greece has agreed to a 25-year rolling loan arrangement providing the British Museum with access to significant Greek antiquities that have never been displayed outside the country. The agreement also includes a joint archaeological research program and shared digitization initiative.
-
-British Prime Minister expressed support for the agreement, describing it as "a partnership, not a surrender." Greek Prime Minister called it "a moment of justice and reconciliation" at a joint press conference at the Acropolis Museum.
-
-The deal has divided opinion in the UK. Museum professionals and cultural commentators are split between those who see it as a progressive model for resolving repatriation disputes and those who worry it sets a precedent that could empty Western museums. "Where does this end?" asked a prominent British art historian.
-
-The agreement specifically states it does not establish a legal precedent for other repatriation claims and is characterized as a voluntary bilateral arrangement. Nevertheless, officials in Nigeria, Egypt, and Ethiopia have already cited the deal as they pursue the return of artifacts held by European institutions.`,
-      category: "entertainment",
-      sources: ["The Guardian", "BBC News", "Kathimerini"],
-      timestamp: now,
-      isBreaking: false,
-    },
-    {
-      id: "ent-5",
-      headline: "Video Game Industry Revenue Surpasses Film and Music Combined for Third Year",
-      summary:
-        "Global video game revenue reached $227 billion in 2025, exceeding the combined revenue of the film box office and recorded music industry, with mobile gaming driving the majority of growth.",
-      body: `The global video game industry generated $227 billion in revenue in 2025, according to data released by Newzoo this week. The figure surpasses the combined revenue of the global box office ($34 billion) and recorded music industry ($31 billion) by a factor of nearly 3.5.
-
-Mobile gaming continued to dominate, accounting for 49% of total revenue at $111 billion. Console gaming generated $56 billion, while PC gaming contributed $42 billion. Cloud gaming, though still a small segment, showed the fastest growth at 38% year-over-year.
-
-The industry's growth was driven by several factors, including the continued expansion of gaming in emerging markets, particularly India and Southeast Asia, and the growing overlap between gaming and social media. Live service games — ongoing titles that generate revenue through regular content updates — accounted for 72% of all gaming revenue.
-
-Labor challenges persist in the industry. Major layoffs affected approximately 16,000 gaming workers in 2025, even as overall revenue grew. Workers' advocacy groups described the simultaneous growth and job cuts as "a fundamental disconnect between industry prosperity and worker welfare."
-
-Looking ahead, analysts project continued but slower growth, with revenue expected to reach $250 billion by 2028. The integration of AI tools in game development is expected to be the most significant technological shift, with potential to both reduce development costs and further displace workers.`,
-      category: "entertainment",
-      sources: ["Newzoo", "IGN", "Financial Times"],
-      timestamp: now,
-      isBreaking: false,
-    },
-  ],
   business: [
     {
       id: "biz-1",
@@ -482,6 +292,99 @@ Skeptics caution that the rally bears hallmarks of previous speculative cycles. 
 Regulatory frameworks continue to evolve. The EU's Markets in Crypto-Assets regulation is now fully in effect, providing clearer rules for institutional participation. In the US, ongoing regulatory uncertainty under the current administration has been a source of both risk and opportunity for the industry.`,
       category: "business",
       sources: ["Bloomberg", "CoinDesk", "Financial Times"],
+      timestamp: now,
+      isBreaking: false,
+    },
+  ],
+  world: [
+    {
+      id: "world-1",
+      headline: "EU and African Union Reach Landmark Migration and Trade Agreement",
+      summary:
+        "After months of negotiations, European and African leaders have signed a comprehensive deal addressing migration flows, trade barriers, and climate investment across both continents.",
+      body: `European Commission President and African Union Chairperson announced the agreement at a joint press conference in Brussels on Sunday, describing it as a "new chapter" in relations between the two continents. The deal covers migration management, tariff reductions, and a €45 billion climate adaptation fund.
+
+Under the migration provisions, the EU will create 300,000 legal work visas annually for African nationals in sectors facing labor shortages, including healthcare, agriculture, and technology. In return, participating African nations have agreed to streamline the processing of returning migrants who do not qualify for asylum.
+
+The trade component eliminates tariffs on 85% of goods flowing between the two blocs over a five-year period. Agricultural products, long a sticking point in negotiations, will see graduated tariff reductions with safeguards for smallholder farmers on both continents.
+
+Critics on both sides have raised concerns. European labor unions worry about wage suppression, while some African civil society groups argue the migration provisions don't go far enough. "This is a starting framework, not the final word," said one senior EU diplomat who requested anonymity to discuss the negotiations.
+
+The climate adaptation fund, financed jointly by EU member states and private sector commitments, will focus on renewable energy infrastructure, drought-resistant agriculture, and coastal protection in the most vulnerable African nations. Projects are expected to begin disbursement by late 2026.`,
+      category: "world",
+      sources: ["Reuters", "Al Jazeera", "Financial Times"],
+      timestamp: now,
+      isBreaking: true,
+    },
+    {
+      id: "world-2",
+      headline: "Japan Announces Major Defense Overhaul Amid Regional Tensions",
+      summary:
+        "Tokyo unveils its largest military restructuring since World War II, including expanded naval capabilities and a new cyber defense command, drawing mixed reactions from neighboring states.",
+      body: `Japan's Prime Minister presented a sweeping defense reform package to parliament on Monday, proposing a 25% increase in military spending over the next three years and the creation of a unified cyber and space defense command. The plan represents the most significant shift in Japan's defense posture in decades.
+
+The restructuring includes the acquisition of long-range cruise missiles capable of striking targets up to 1,500 kilometers away, a capability Japan has historically avoided. Defense officials emphasized these weapons are "exclusively defensive" and intended to deter potential threats in the region.
+
+China's foreign ministry expressed "grave concern" over the announcement, calling it a departure from Japan's post-war pacifist constitution. South Korea's response was more measured, with Seoul noting the importance of "transparent communication" about military buildups in the region.
+
+The United States welcomed the move, with the Pentagon describing it as "a positive step toward shared burden-bearing in the Indo-Pacific." The expanded capabilities are expected to integrate closely with existing U.S.-Japan alliance frameworks.
+
+Domestic opinion in Japan remains divided. Polls show roughly 52% of Japanese citizens support increased defense spending, while significant opposition remains, particularly among older generations who remember the consequences of militarism. Constitutional scholars have questioned whether the long-range strike capability is compatible with Article 9 of Japan's constitution.`,
+      category: "world",
+      sources: ["Associated Press", "NHK", "South China Morning Post"],
+      timestamp: now,
+      isBreaking: false,
+    },
+    {
+      id: "world-3",
+      headline: "India and Pakistan Resume Diplomatic Talks After Two-Year Freeze",
+      summary:
+        "Senior diplomats from India and Pakistan met in a Gulf state for the first formal bilateral talks since 2024, discussing trade normalization and the disputed Kashmir region.",
+      body: `Indian and Pakistani foreign secretaries held two days of talks in Muscat, Oman, marking the first formal diplomatic engagement between the nuclear-armed neighbors since relations broke down in early 2024. Both sides described the discussions as "constructive" without announcing concrete agreements.
+
+The talks covered trade normalization, the status of diplomatic missions, and what officials described as "humanitarian matters" — widely understood to include prisoner exchanges and divided families. The more contentious issue of Kashmir was discussed but, as expected, produced no breakthrough.
+
+Regional analysts characterized the resumption of dialogue as significant in itself. "The fact that both governments agreed to sit at the same table signals a recognition that the status quo is unsustainable," said a senior fellow at a New Delhi think tank.
+
+Pakistan's foreign ministry emphasized the importance of addressing "core disputes" for lasting peace, while India's external affairs ministry focused on the need for "a terrorism-free environment" as a prerequisite for deeper engagement. Both sides agreed to continue discussions at a date to be determined.`,
+      category: "world",
+      sources: ["Associated Press", "Dawn", "The Hindu"],
+      timestamp: now,
+      isBreaking: false,
+    },
+    {
+      id: "world-4",
+      headline: "Brazil's Supreme Court Rules on Landmark Indigenous Land Rights Case",
+      summary:
+        "In a closely watched decision, Brazil's highest court has upheld indigenous land claims in the Amazon, rejecting challenges from agricultural interests in a 7-4 ruling.",
+      body: `Brazil's Supreme Federal Tribunal ruled on Friday that indigenous communities hold constitutional rights to ancestral lands they occupied prior to the 1988 constitution, rejecting the so-called "temporal framework" argument pushed by agricultural lobbies. The 7-4 decision is expected to affect dozens of pending land disputes.
+
+The ruling affirms that indigenous land rights are "original rights" predating the formation of the Brazilian state, and cannot be limited by arbitrary cutoff dates. Chief Justice wrote in the majority opinion that the constitution "recognizes, rather than grants" these rights.
+
+Agricultural industry groups expressed disappointment, warning the decision could affect food production in regions bordering indigenous territories. The Confederation of Agriculture estimated that up to 5 million hectares could be affected by pending demarcation claims.
+
+Indigenous rights organizations celebrated the ruling as historic. Leaders from several Amazonian communities traveled to Brasília for the announcement. Environmental groups noted the decision could slow deforestation, as indigenous-managed lands have consistently shown lower deforestation rates than surrounding areas.
+
+The ruling does not automatically resolve individual land disputes but establishes the legal framework under which they will be adjudicated. The government now faces the challenge of implementing demarcation processes while managing tensions between indigenous communities and established agricultural operations.`,
+      category: "world",
+      sources: ["Reuters", "Folha de São Paulo", "The Guardian"],
+      timestamp: now,
+      isBreaking: false,
+    },
+    {
+      id: "world-5",
+      headline: "WHO Declares End to Mpox Public Health Emergency in Central Africa",
+      summary:
+        "The World Health Organization has lifted its emergency designation for the mpox outbreak in the Democratic Republic of Congo and surrounding nations, citing successful vaccination campaigns.",
+      body: `The World Health Organization announced Sunday that the mpox outbreak in Central Africa no longer constitutes a Public Health Emergency of International Concern, marking the end of an 18-month emergency period. The decision follows a dramatic decline in new cases across the affected region.
+
+Vaccination campaigns, which reached over 12 million people in the Democratic Republic of Congo, Republic of Congo, and neighboring countries, were credited as the primary driver of the outbreak's containment. The WHO noted that case counts had fallen 94% from their peak.
+
+"This is a testament to what the global health community can achieve when resources are mobilized quickly and equitably," said the WHO Director-General. However, he cautioned that surveillance must continue and that the virus remains endemic in parts of Central Africa.
+
+Public health experts praised the response but noted lessons for future outbreaks. The initial vaccine rollout faced significant delays due to manufacturing bottlenecks and distribution challenges in remote areas. Several NGOs called for permanent investment in regional health infrastructure rather than emergency-only funding models.`,
+      category: "world",
+      sources: ["WHO", "BBC News", "The Lancet"],
       timestamp: now,
       isBreaking: false,
     },
