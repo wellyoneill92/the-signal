@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { Article, Category, CATEGORIES } from "./types";
-import { getCachedArticles, setCachedArticles } from "./cache";
+import { Category, CATEGORIES } from "./types";
+import { slugify, insertArticles } from "./db";
 
 const client = new Anthropic();
 
@@ -8,13 +8,7 @@ function getCategoryInfo(category: Category) {
   return CATEGORIES.find((c) => c.slug === category)!;
 }
 
-export async function fetchNewsForCategory(category: Category): Promise<Article[]> {
-  // Check cache first
-  const cached = getCachedArticles(category);
-  if (cached) {
-    return cached.articles;
-  }
-
+export async function generateArticlesForCategory(category: Category): Promise<void> {
   const categoryInfo = getCategoryInfo(category);
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -40,9 +34,9 @@ export async function fetchNewsForCategory(category: Category): Promise<Article[
 
 Search for the most important ${categoryInfo.label.toLowerCase()} news stories happening today or in the last 24 hours. Focus on: ${categoryInfo.description}.
 
-Find 5 significant, distinct news stories. For each story, search for multiple sources to ensure balanced coverage.
+Find 1 significant news story. Search for multiple sources to ensure balanced coverage.
 
-After researching, respond with ONLY a JSON array (no markdown fencing, no explanation) of exactly 5 articles in this format:
+After researching, respond with ONLY a JSON array (no markdown fencing, no explanation) of exactly 1 article in this format:
 [
   {
     "headline": "Clear, factual headline (no sensationalism)",
@@ -56,9 +50,9 @@ After researching, respond with ONLY a JSON array (no markdown fencing, no expla
 Guidelines:
 - Write in the style of Reuters or AP News — neutral, factual, no opinion
 - Present multiple sides of controversial topics
-- Mark at most 1 story as "isBreaking": true (only if truly breaking news)
+- Mark the story as "isBreaking": true only if truly breaking news
 - Headlines should be informative, not clickbait
-- Each article body should be substantive (4-6 paragraphs)`,
+- The article body should be substantive (4-6 paragraphs)`,
       },
     ],
   });
@@ -78,45 +72,47 @@ Guidelines:
     jsonText = jsonText.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
   }
 
-  let articles: Article[];
+  let articles: {
+    slug: string;
+    headline: string;
+    summary: string;
+    body: string;
+    category: Category;
+    sources: string[];
+    isBreaking: boolean;
+  }[];
+
   try {
     const parsed = JSON.parse(jsonText);
-    articles = parsed.map((item: Record<string, unknown>, index: number) => ({
-      id: `${category}-${Date.now()}-${index}`,
-      headline: item.headline,
-      summary: item.summary,
-      body: item.body,
+    const datePrefix = new Date().toISOString().slice(0, 10); // e.g. "2026-02-09"
+
+    articles = parsed.map((item: Record<string, unknown>) => ({
+      slug: `${slugify(item.headline as string)}-${datePrefix}`,
+      headline: item.headline as string,
+      summary: item.summary as string,
+      body: item.body as string,
       category,
-      sources: item.sources || [],
-      timestamp: new Date().toISOString(),
-      isBreaking: item.isBreaking || false,
+      sources: (item.sources as string[]) || [],
+      isBreaking: (item.isBreaking as boolean) || false,
     }));
   } catch {
     console.error("Failed to parse news response:", jsonText.substring(0, 500));
     throw new Error("Failed to parse AI-generated news articles");
   }
 
-  // Cache the results
-  setCachedArticles(category, {
-    articles,
-    fetchedAt: Date.now(),
-  });
-
-  return articles;
+  // Insert into Supabase
+  await insertArticles(articles);
+  console.log(`Inserted ${articles.length} article(s) for ${category}`);
 }
 
-export async function fetchAllNews(): Promise<Record<Category, Article[]>> {
+export async function generateAllArticles(): Promise<void> {
   const categories = CATEGORIES.map((c) => c.slug);
 
-  const results = await Promise.allSettled(
-    categories.map((cat) => fetchNewsForCategory(cat))
-  );
-
-  const allNews: Record<string, Article[]> = {};
-  categories.forEach((cat, i) => {
-    const result = results[i];
-    allNews[cat] = result.status === "fulfilled" ? result.value : [];
-  });
-
-  return allNews as Record<Category, Article[]>;
+  for (const cat of categories) {
+    try {
+      await generateArticlesForCategory(cat);
+    } catch (error) {
+      console.error(`Failed to generate articles for ${cat}:`, error);
+    }
+  }
 }

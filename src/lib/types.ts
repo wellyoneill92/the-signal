@@ -1,5 +1,6 @@
 export interface Article {
   id: string;
+  slug: string;
   headline: string;
   summary: string;
   body: string;
@@ -18,7 +19,11 @@ export const CATEGORIES: { slug: Category; label: string; description: string }[
   { slug: "world", label: "World", description: "International affairs, conflicts and diplomacy" },
 ];
 
-export interface CachedData {
-  articles: Article[];
-  fetchedAt: number;
+export interface FeedbackSummary {
+  totalResponses: number;
+  accurate: { yes: number; no: number };
+  balanced: { yes: number; no: number };
+  important: { yes: number; no: number };
+  topTags: { tag: string; count: number }[];
+  recentComments: { comment: string; createdAt: string }[];
 }

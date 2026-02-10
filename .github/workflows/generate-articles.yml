@@ -1,0 +1,35 @@
+name: Daily Article Generation
+
+on:
+  schedule:
+    # 4am AEST = 6pm UTC (previous day)
+    # AEST is UTC+10, but during AEDT (daylight saving) it's UTC+11
+    # Using 5pm UTC to cover both (will run at 3am AEDT or 3am AEST)
+    - cron: "0 18 * * *"
+  workflow_dispatch: # Allow manual triggers
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate articles
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npx tsx scripts/generate-articles.ts

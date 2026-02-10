@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { fetchNewsForCategory, fetchAllNews } from "@/lib/news";
-import { Category, CATEGORIES } from "@/lib/types";
+import { CATEGORIES, Category } from "@/lib/types";
+import { getArticlesByCategory, getAllLatestArticles } from "@/lib/articles";
 
 export async function GET(request: NextRequest) {
   const category = request.nextUrl.searchParams.get("category") as Category | null;
@@ -11,12 +11,12 @@ export async function GET(request: NextRequest) {
       if (!valid) {
         return NextResponse.json({ error: "Invalid category" }, { status: 400 });
       }
-      const articles = await fetchNewsForCategory(category);
+      const articles = await getArticlesByCategory(category);
       return NextResponse.json({ articles });
     }
 
     // Fetch all categories
-    const allNews = await fetchAllNews();
+    const allNews = await getAllLatestArticles();
     return NextResponse.json(allNews);
   } catch (error) {
     console.error("News API error:", error);

@@ -18,7 +18,7 @@ export default function ArticleCard({
     <article
       className={`group ${featured ? "" : "border-b border-neutral-200 pb-6"}`}
     >
-      <Link href={`/article/${article.id}`} className="block">
+      <Link href={`/article/${article.slug}`} className="block">
         {article.isBreaking && (
           <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-2">
             Breaking

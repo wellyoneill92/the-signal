@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { fetchNewsForCategory } from "@/lib/news";
 import { CATEGORIES, Category, Article } from "@/lib/types";
-import { MOCK_ARTICLES } from "@/lib/mock-data";
+import { getArticlesByCategory } from "@/lib/articles";
 import ArticleCard from "@/components/ArticleCard";
 
 export const revalidate = 3600; // ISR: revalidate every hour
@@ -24,15 +23,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   const category = CATEGORIES.find((c) => c.slug === params.slug);
   if (!category) notFound();
 
-  let articles: Article[] = [];
-  try {
-    articles = await fetchNewsForCategory(category.slug as Category);
-  } catch {
-    // ignore
-  }
-  if (articles.length === 0) {
-    articles = MOCK_ARTICLES[category.slug as Category] ?? [];
-  }
+  const articles: Article[] = await getArticlesByCategory(category.slug as Category);
 
   const lead = articles[0];
   const secondary = articles.slice(1, 3);
@@ -58,7 +49,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
       {/* Lead Story — full width, big treatment */}
       {lead && (
         <section className="mb-10 pb-8 border-b border-neutral-300">
-          <Link href={`/article/${lead.id}`} className="group block">
+          <Link href={`/article/${lead.slug}`} className="group block">
             {lead.isBreaking && (
               <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-3">
                 Breaking
@@ -98,7 +89,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                 i === 0 ? "md:border-r md:border-neutral-200 md:pr-10" : "md:pl-0"
               }`}
             >
-              <Link href={`/article/${article.id}`} className="group block">
+              <Link href={`/article/${article.slug}`} className="group block">
                 {article.isBreaking && (
                   <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-2">
                     Breaking

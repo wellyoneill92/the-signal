@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getArticleById, getRelatedArticles } from "@/lib/articles";
+import { getArticleBySlug, getArticleById, getRelatedArticles } from "@/lib/articles";
 import { CATEGORIES } from "@/lib/types";
 import ArticleCard from "@/components/ArticleCard";
 import ArticleAudioPlayer from "@/components/ArticleAudioPlayer";
 import ArticleFeedback from "@/components/ArticleFeedback";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const article = getArticleById(params.id);
+  const article = await getArticleBySlug(params.id) || await getArticleById(params.id);
   if (!article) return { title: "Not Found — The Signal" };
   return {
     title: `${article.headline} — The Signal`,
@@ -15,12 +15,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function ArticlePage({ params }: { params: { id: string } }) {
-  const article = getArticleById(params.id);
+export default async function ArticlePage({ params }: { params: { id: string } }) {
+  // Try slug first, then id (for backwards compat with mock data)
+  const article = await getArticleBySlug(params.id) || await getArticleById(params.id);
   if (!article) notFound();
 
   const categoryInfo = CATEGORIES.find((c) => c.slug === article.category);
-  const related = getRelatedArticles(article);
+  const related = await getRelatedArticles(article);
 
   const formattedTime = new Date(article.timestamp).toLocaleDateString("en-US", {
     weekday: "long",

@@ -1,22 +1,12 @@
-import { fetchAllNews } from "@/lib/news";
 import { CATEGORIES, Category, Article } from "@/lib/types";
-import { MOCK_ARTICLES } from "@/lib/mock-data";
+import { getAllLatestArticles } from "@/lib/articles";
 import ArticleCard from "@/components/ArticleCard";
 import Link from "next/link";
 
 export const revalidate = 3600; // ISR: revalidate every hour
 
 export default async function HomePage() {
-  let allNews: Record<Category, Article[]>;
-
-  try {
-    allNews = await fetchAllNews();
-    // If every category came back empty, fall back to mock
-    const hasAny = Object.values(allNews).some((a) => a.length > 0);
-    if (!hasAny) allNews = MOCK_ARTICLES;
-  } catch {
-    allNews = MOCK_ARTICLES;
-  }
+  const allNews: Record<Category, Article[]> = await getAllLatestArticles();
 
   // Get the top story from each category for the hero section
   const topStories = CATEGORIES.map((cat) => allNews[cat.slug]?.[0]).filter(Boolean);

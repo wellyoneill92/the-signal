@@ -2,7 +2,20 @@ import { Article, Category } from "./types";
 
 const now = new Date().toISOString();
 
-export const MOCK_ARTICLES: Record<Category, Article[]> = {
+function slugify(headline: string): string {
+  return headline
+    .toLowerCase()
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 80);
+}
+
+type RawArticle = Omit<Article, "slug">;
+
+const RAW_ARTICLES: Record<Category, RawArticle[]> = {
   politics: [
     {
       id: "politics-1",
@@ -390,3 +403,11 @@ Public health experts praised the response but noted lessons for future outbreak
     },
   ],
 };
+
+// Add slugs to all mock articles
+export const MOCK_ARTICLES: Record<Category, Article[]> = Object.fromEntries(
+  Object.entries(RAW_ARTICLES).map(([cat, articles]) => [
+    cat,
+    articles.map((a) => ({ ...a, slug: slugify(a.headline) })),
+  ])
+) as Record<Category, Article[]>;
