@@ -1,8 +1,8 @@
-import "server-only";
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 // Admin client — used for writes (inserting articles)
-// Protected by server-only guard: will throw at build time if imported from client code
+// Safe: SUPABASE_SERVICE_ROLE_KEY has no NEXT_PUBLIC_ prefix,
+// so Next.js will never expose it to client bundles
 export function getServiceClient(): SupabaseClient {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;

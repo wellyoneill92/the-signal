@@ -104,11 +104,17 @@ Guidelines:
 export async function generateAllArticles(): Promise<void> {
   const categories = CATEGORIES.map((c) => c.slug);
 
-  for (const cat of categories) {
+  for (let i = 0; i < categories.length; i++) {
+    const cat = categories[i];
     try {
       await generateArticlesForCategory(cat);
     } catch (error) {
       console.error(`Failed to generate articles for ${cat}:`, error);
+    }
+    // Wait 60s between categories to stay within rate limits
+    if (i < categories.length - 1) {
+      console.log("Waiting 60s for rate limit cooldown...");
+      await new Promise((r) => setTimeout(r, 60_000));
     }
   }
 }

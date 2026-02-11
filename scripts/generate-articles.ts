@@ -12,12 +12,14 @@
 
 import { config } from "dotenv";
 config({ path: ".env.local" });
-import { generateAllArticles } from "../src/lib/news";
 
 async function main() {
   console.log("=== The Signal: Daily Article Generation ===");
   console.log(`Started at: ${new Date().toISOString()}`);
   console.log();
+
+  // Dynamic import so env vars are available when news.ts initializes the Anthropic client
+  const { generateAllArticles } = await import("../src/lib/news");
 
   try {
     await generateAllArticles();
