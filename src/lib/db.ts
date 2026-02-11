@@ -24,7 +24,6 @@ function rowToArticle(row: Record<string, unknown>): Article {
     category: row.category as Category,
     sources: (row.sources as string[]) || [],
     timestamp: row.published_at as string,
-    isBreaking: (row.is_breaking as boolean) || false,
   };
 }
 
@@ -119,7 +118,6 @@ export async function insertArticles(
     body: string;
     category: Category;
     sources: string[];
-    isBreaking: boolean;
   }[]
 ): Promise<void> {
   const admin = getServiceClient();
@@ -131,7 +129,6 @@ export async function insertArticles(
     body: a.body,
     category: a.category,
     sources: a.sources,
-    is_breaking: a.isBreaking,
     published_at: new Date().toISOString(),
   }));
 

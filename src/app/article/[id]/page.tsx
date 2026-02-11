@@ -50,11 +50,6 @@ export default async function ArticlePage({ params }: { params: { id: string } }
 
       {/* Article Header */}
       <header className="mb-8">
-        {article.isBreaking && (
-          <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-3">
-            Breaking News
-          </span>
-        )}
         <h1 className="font-headline text-4xl md:text-5xl lg:text-[3.25rem] font-bold leading-tight mb-4">
           {article.headline}
         </h1>

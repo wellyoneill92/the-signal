@@ -50,11 +50,6 @@ export default async function CategoryPage({ params }: { params: { slug: string 
       {lead && (
         <section className="mb-10 pb-8 border-b border-neutral-300">
           <Link href={`/article/${lead.slug}`} className="group block">
-            {lead.isBreaking && (
-              <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-3">
-                Breaking
-              </span>
-            )}
             <h2 className="font-headline text-4xl md:text-5xl font-bold leading-tight mb-4 group-hover:text-signal-red transition-colors">
               {lead.headline}
             </h2>
@@ -90,11 +85,6 @@ export default async function CategoryPage({ params }: { params: { slug: string 
               }`}
             >
               <Link href={`/article/${article.slug}`} className="group block">
-                {article.isBreaking && (
-                  <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-2">
-                    Breaking
-                  </span>
-                )}
                 <h3 className="font-headline text-2xl md:text-3xl font-bold leading-tight mb-3 group-hover:text-signal-red transition-colors">
                   {article.headline}
                 </h3>

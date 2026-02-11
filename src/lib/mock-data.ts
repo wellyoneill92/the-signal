@@ -34,7 +34,7 @@ The White House issued a statement supporting the bill, calling it "a commonsens
       category: "politics",
       sources: ["Associated Press", "Politico", "The Hill"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "politics-2",
@@ -53,7 +53,7 @@ Constitutional law experts note the case arrives as the court continues to recon
       category: "politics",
       sources: ["SCOTUSblog", "The Washington Post", "Reuters"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "politics-3",
@@ -72,7 +72,7 @@ The data also showed that overall campaign spending is on pace to set a new midt
       category: "politics",
       sources: ["OpenSecrets", "The New York Times", "FEC"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "politics-4",
@@ -91,7 +91,7 @@ Technology companies that develop facial recognition systems were notably divide
       category: "politics",
       sources: ["The Washington Post", "Wired", "Associated Press"],
       timestamp: now,
-      isBreaking: true,
+
     },
     {
       id: "politics-5",
@@ -110,7 +110,7 @@ Housing policy experts noted the significance of the bipartisan framing. "Housin
       category: "politics",
       sources: ["Politico", "The Wall Street Journal", "NPR"],
       timestamp: now,
-      isBreaking: false,
+
     },
   ],
   technology: [
@@ -133,7 +133,7 @@ The dual announcements have also reignited debate about the concentration of AI 
       category: "technology",
       sources: ["Nature", "Wired", "MIT Technology Review"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "tech-2",
@@ -152,7 +152,7 @@ Tech industry observers noted the global implications. Similar regulations are u
       category: "technology",
       sources: ["The Verge", "European Commission", "Bloomberg"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "tech-3",
@@ -171,7 +171,7 @@ The geopolitical dimensions are significant. The new facilities reduce Western d
       category: "technology",
       sources: ["Reuters", "Semiconductor Engineering", "Financial Times"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "tech-4",
@@ -190,7 +190,7 @@ The incident is expected to accelerate adoption of RPKI and other security measu
       category: "technology",
       sources: ["Ars Technica", "Cloudflare Blog", "The Register"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "tech-5",
@@ -209,7 +209,7 @@ The announcement sent QubitCore's stock up 34% in after-hours trading and booste
       category: "technology",
       sources: ["MIT Technology Review", "Nature Physics", "CNBC"],
       timestamp: now,
-      isBreaking: false,
+
     },
   ],
   business: [
@@ -230,7 +230,7 @@ The potential rate cuts would provide relief to mortgage borrowers and businesse
       category: "business",
       sources: ["Financial Times", "Bloomberg", "The Wall Street Journal"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "biz-2",
@@ -249,7 +249,7 @@ Amazon's stock rose 3.2% on the news, while shares of competing healthcare chain
       category: "business",
       sources: ["CNBC", "The Wall Street Journal", "Reuters"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "biz-3",
@@ -268,7 +268,7 @@ Economists estimate the disruptions are adding 0.3-0.5 percentage points to good
       category: "business",
       sources: ["Financial Times", "Lloyd's List", "Bloomberg"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "biz-4",
@@ -287,7 +287,7 @@ Business groups remain divided. Some employers' associations have embraced the f
       category: "business",
       sources: ["Reuters", "The Economist", "Politico Europe"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "biz-5",
@@ -306,7 +306,7 @@ Regulatory frameworks continue to evolve. The EU's Markets in Crypto-Assets regu
       category: "business",
       sources: ["Bloomberg", "CoinDesk", "Financial Times"],
       timestamp: now,
-      isBreaking: false,
+
     },
   ],
   world: [
@@ -327,7 +327,7 @@ The climate adaptation fund, financed jointly by EU member states and private se
       category: "world",
       sources: ["Reuters", "Al Jazeera", "Financial Times"],
       timestamp: now,
-      isBreaking: true,
+
     },
     {
       id: "world-2",
@@ -346,7 +346,7 @@ Domestic opinion in Japan remains divided. Polls show roughly 52% of Japanese ci
       category: "world",
       sources: ["Associated Press", "NHK", "South China Morning Post"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "world-3",
@@ -363,7 +363,7 @@ Pakistan's foreign ministry emphasized the importance of addressing "core disput
       category: "world",
       sources: ["Associated Press", "Dawn", "The Hindu"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "world-4",
@@ -382,7 +382,7 @@ The ruling does not automatically resolve individual land disputes but establish
       category: "world",
       sources: ["Reuters", "Folha de São Paulo", "The Guardian"],
       timestamp: now,
-      isBreaking: false,
+
     },
     {
       id: "world-5",
@@ -399,7 +399,7 @@ Public health experts praised the response but noted lessons for future outbreak
       category: "world",
       sources: ["WHO", "BBC News", "The Lancet"],
       timestamp: now,
-      isBreaking: false,
+
     },
   ],
 };

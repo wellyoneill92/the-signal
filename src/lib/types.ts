@@ -7,7 +7,6 @@ export interface Article {
   category: Category;
   sources: string[];
   timestamp: string;
-  isBreaking?: boolean;
 }
 
 export type Category = "politics" | "technology" | "business" | "world";

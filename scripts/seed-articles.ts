@@ -23,7 +23,6 @@ async function main() {
       body: a.body,
       category: a.category,
       sources: a.sources,
-      isBreaking: a.isBreaking || false,
     }));
 
     try {

@@ -42,15 +42,13 @@ After researching, respond with ONLY a JSON array (no markdown fencing, no expla
     "headline": "Clear, factual headline (no sensationalism)",
     "summary": "2-3 sentence neutral summary of the story",
     "body": "4-6 paragraph comprehensive article written in neutral, factual journalistic tone. Present multiple perspectives where applicable. Include relevant context, data, and quotes from sources. Each paragraph should be separated by \\n\\n",
-    "sources": ["source name 1", "source name 2"],
-    "isBreaking": false
+    "sources": ["source name 1", "source name 2"]
   }
 ]
 
 Guidelines:
 - Write in the style of Reuters or AP News — neutral, factual, no opinion
 - Present multiple sides of controversial topics
-- Mark the story as "isBreaking": true only if truly breaking news
 - Headlines should be informative, not clickbait
 - The article body should be substantive (4-6 paragraphs)`,
       },
@@ -79,7 +77,6 @@ Guidelines:
     body: string;
     category: Category;
     sources: string[];
-    isBreaking: boolean;
   }[];
 
   try {
@@ -93,7 +90,6 @@ Guidelines:
       body: item.body as string,
       category,
       sources: (item.sources as string[]) || [],
-      isBreaking: (item.isBreaking as boolean) || false,
     }));
   } catch {
     console.error("Failed to parse news response:", jsonText.substring(0, 500));

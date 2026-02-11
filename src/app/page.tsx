@@ -10,7 +10,7 @@ export default async function HomePage() {
 
   // Get the top story from each category for the hero section
   const topStories = CATEGORIES.map((cat) => allNews[cat.slug]?.[0]).filter(Boolean);
-  const heroStory = topStories.find((a) => a?.isBreaking) || topStories[0];
+  const heroStory = topStories[0];
   const restTopStories = topStories.filter((a) => a?.id !== heroStory?.id).slice(0, 4);
 
   return (

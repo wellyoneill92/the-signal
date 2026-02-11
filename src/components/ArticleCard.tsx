@@ -19,12 +19,6 @@ export default function ArticleCard({
       className={`group ${featured ? "" : "border-b border-neutral-200 pb-6"}`}
     >
       <Link href={`/article/${article.slug}`} className="block">
-        {article.isBreaking && (
-          <span className="inline-block bg-signal-red text-white text-[10px] tracking-widest uppercase font-bold px-2 py-0.5 mb-2">
-            Breaking
-          </span>
-        )}
-
         <h3
           className={`font-headline leading-tight mb-2 group-hover:text-signal-red transition-colors ${
             featured ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"
