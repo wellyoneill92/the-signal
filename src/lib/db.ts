@@ -1,4 +1,5 @@
-import { getSupabase, getServiceClient } from "./supabase";
+import { getSupabase } from "./supabase";
+import { getServiceClient } from "./supabase-admin";
 import { Article, Category, CATEGORIES, FeedbackSummary } from "./types";
 
 // ─── Utilities ───────────────────────────────────────────
