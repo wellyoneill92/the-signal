@@ -10,11 +10,13 @@ function getCategoryInfo(category: Category) {
 
 export async function generateArticlesForCategory(category: Category): Promise<void> {
   const categoryInfo = getCategoryInfo(category);
+  // Use AEST timezone for date display and slug generation
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "Australia/Sydney",
   });
 
   const response = await client.messages.create({
@@ -32,7 +34,9 @@ export async function generateArticlesForCategory(category: Category): Promise<v
         role: "user",
         content: `You are a senior news editor for "The Signal", an impartial news aggregator. Today is ${today}.
 
-Search for the most important ${categoryInfo.label.toLowerCase()} news stories happening today or in the last 24 hours. Focus on: ${categoryInfo.description}.
+Search for the most important ${categoryInfo.label.toLowerCase()} news story from TODAY. Focus on: ${categoryInfo.description}.
+
+Search for the very latest breaking news and developments from the last few hours. Use multiple searches to find the most current story. Prioritise stories that are actively developing right now over older stories.
 
 Find 1 significant news story. Search for multiple sources to ensure balanced coverage.
 
@@ -66,8 +70,15 @@ Guidelines:
   // Parse the JSON from the response
   jsonText = jsonText.trim();
   // Remove markdown code fencing if present
-  if (jsonText.startsWith("```")) {
-    jsonText = jsonText.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
+  if (jsonText.includes("```")) {
+    const match = jsonText.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if (match) jsonText = match[1].trim();
+  }
+  // Extract JSON array if there's preamble text before it
+  const arrayStart = jsonText.indexOf("[");
+  const arrayEnd = jsonText.lastIndexOf("]");
+  if (arrayStart !== -1 && arrayEnd !== -1 && arrayStart < arrayEnd) {
+    jsonText = jsonText.slice(arrayStart, arrayEnd + 1);
   }
 
   let articles: {
@@ -81,7 +92,8 @@ Guidelines:
 
   try {
     const parsed = JSON.parse(jsonText);
-    const datePrefix = new Date().toISOString().slice(0, 10); // e.g. "2026-02-09"
+    // Use AEST date for slug so it matches the local publication date
+    const datePrefix = new Date().toLocaleDateString("en-CA", { timeZone: "Australia/Sydney" }); // e.g. "2026-02-13"
 
     articles = parsed.map((item: Record<string, unknown>) => ({
       slug: `${slugify(item.headline as string)}-${datePrefix}`,
@@ -111,10 +123,10 @@ export async function generateAllArticles(): Promise<void> {
     } catch (error) {
       console.error(`Failed to generate articles for ${cat}:`, error);
     }
-    // Wait 60s between categories to stay within rate limits
+    // Wait 90s between categories to stay within rate limits (30k input tokens/min)
     if (i < categories.length - 1) {
-      console.log("Waiting 60s for rate limit cooldown...");
-      await new Promise((r) => setTimeout(r, 60_000));
+      console.log("Waiting 90s for rate limit cooldown...");
+      await new Promise((r) => setTimeout(r, 90_000));
     }
   }
 }
