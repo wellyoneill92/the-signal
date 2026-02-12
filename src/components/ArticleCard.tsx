@@ -12,6 +12,7 @@ export default function ArticleCard({
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: "Australia/Sydney",
   });
 
   return (

@@ -28,6 +28,7 @@ export default async function ArticlePage({ params }: { params: { id: string } }
     month: "long",
     day: "numeric",
     year: "numeric",
+    timeZone: "Australia/Sydney",
   });
 
   return (

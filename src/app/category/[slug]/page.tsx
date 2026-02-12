@@ -62,6 +62,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                   month: "long",
                   day: "numeric",
                   year: "numeric",
+                  timeZone: "Australia/Sydney",
                 })}
               </time>
               <span className="w-1 h-1 bg-neutral-300 rounded-full" />
@@ -101,6 +102,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
                       month: "long",
                       day: "numeric",
                       year: "numeric",
+                      timeZone: "Australia/Sydney",
                     })}
                   </time>
                   <span className="ml-auto text-signal-red opacity-0 group-hover:opacity-100 transition-opacity">

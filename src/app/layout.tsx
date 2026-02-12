@@ -49,6 +49,7 @@ export default function RootLayout({
                 year: "numeric",
                 month: "long",
                 day: "numeric",
+                timeZone: "Australia/Sydney",
               })}
             </p>
           </div>
