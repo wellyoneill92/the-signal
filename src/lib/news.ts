@@ -95,11 +95,14 @@ Guidelines:
     // Use AEST date for slug so it matches the local publication date
     const datePrefix = new Date().toLocaleDateString("en-CA", { timeZone: "Australia/Sydney" }); // e.g. "2026-02-13"
 
+    // Strip <cite> tags injected by the web_search tool
+    const stripCites = (text: string) => text.replace(/<\/?cite[^>]*>/g, "");
+
     articles = parsed.map((item: Record<string, unknown>) => ({
       slug: `${slugify(item.headline as string)}-${datePrefix}`,
-      headline: item.headline as string,
-      summary: item.summary as string,
-      body: item.body as string,
+      headline: stripCites(item.headline as string),
+      summary: stripCites(item.summary as string),
+      body: stripCites(item.body as string),
       category,
       sources: (item.sources as string[]) || [],
     }));
