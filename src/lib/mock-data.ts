@@ -32,9 +32,12 @@ Opposition came from a small group of senators who argued the board represents u
 
 The White House issued a statement supporting the bill, calling it "a commonsense step to ensure accountability." Political analysts noted the rare bipartisan cooperation, suggesting infrastructure oversight may be one of the few areas where cross-party legislation remains achievable in the current Congress.`,
       category: "politics",
-      sources: ["Associated Press", "Politico", "The Hill"],
+      sources: [{ name: "Associated Press", url: "" }, { name: "Politico", url: "" }, { name: "The Hill", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "HuffPost", url: "" }],
+      sourcesRight: [{ name: "Fox News", url: "" }, { name: "National Review", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "Progressive outlets like The Guardian and HuffPost have praised the bill as a long-overdue accountability measure, arguing that oversight boards are essential to ensure infrastructure dollars reach underserved communities rather than well-connected contractors. Left-leaning commentators have framed the 78-19 vote as proof that transparency is a winning issue that Democrats should champion more aggressively heading into the midterms.",
+      perspectiveRight: "Conservative media including Fox News and National Review have offered cautious support for the accountability principle while warning that a federally appointed board risks becoming another layer of Washington bureaucracy that delays the very projects it is meant to oversee. Right-leaning commentators have focused on the dissenting governors' concerns, arguing that infrastructure spending decisions should remain with states rather than an unelected federal body.",
     },
     {
       id: "politics-2",
@@ -51,9 +54,12 @@ Business groups see the case as an opportunity to curtail what they describe as 
 
 Constitutional law experts note the case arrives as the court continues to reconsider the scope of federal regulatory power. A ruling is expected by June 2027, and could affect regulations across agencies including the FDA, SEC, and FTC.`,
       category: "politics",
-      sources: ["SCOTUSblog", "The Washington Post", "Reuters"],
+      sources: [{ name: "SCOTUSblog", url: "" }, { name: "The Washington Post", url: "" }, { name: "Reuters", url: "" }],
+      sourcesLeft: [{ name: "The New York Times", url: "" }, { name: "Vox", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "The Federalist", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The New York Times and Vox have framed the case as a direct threat to the administrative state, warning that a broad ruling against the EPA could gut climate protections and hand Congress an impossible workload it is ill-equipped to handle. Left-leaning legal commentators argue the major questions doctrine is being weaponised by industry groups to roll back regulations that protect public health.",
+      perspectiveRight: "National Review and The Federalist have welcomed the case as a necessary corrective to decades of regulatory overreach by unelected bureaucrats. Right-leaning commentators argue that the Constitution vests lawmaking power in Congress, not agencies, and that the court should use this opportunity to restore democratic accountability to the regulatory process.",
     },
     {
       id: "politics-3",
@@ -70,9 +76,12 @@ Campaign finance reform advocates offered mixed reactions. Some praised the demo
 
 The data also showed that overall campaign spending is on pace to set a new midterm record, with total spending projected to exceed $9 billion. Super PAC spending remains substantial despite the small-dollar surge, accounting for approximately 30% of total election-related expenditures.`,
       category: "politics",
-      sources: ["OpenSecrets", "The New York Times", "FEC"],
+      sources: [{ name: "OpenSecrets", url: "" }, { name: "The New York Times", url: "" }, { name: "FEC", url: "" }],
+      sourcesLeft: [{ name: "HuffPost", url: "" }, { name: "Mother Jones", url: "" }],
+      sourcesRight: [{ name: "Fox News", url: "" }, { name: "Washington Times", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "HuffPost and Mother Jones have celebrated the small-dollar surge as evidence of a grassroots uprising against corporate money in politics, emphasising that progressive candidates are driving much of the growth. Left-leaning outlets argue this trend vindicates the push to reduce Super PAC influence and suggests voters want candidates who are accountable to ordinary people rather than wealthy donors.",
+      perspectiveRight: "Fox News and the Washington Times have highlighted the Republican small-dollar gains as proof that the base remains energised, while also raising concerns that outrage-driven online fundraising is fuelling political polarisation. Right-leaning commentators have pointed out that Super PACs — many backed by liberal billionaires — still dominate total spending, undermining progressive claims about democratic fundraising.",
     },
     {
       id: "politics-4",
@@ -89,9 +98,12 @@ Law enforcement groups offered qualified support for the warrant requirement but
 
 Technology companies that develop facial recognition systems were notably divided. Some supported the regulation as providing legal clarity, while others warned the accuracy audit requirements could be technically burdensome. The bill does not restrict private sector use of the technology, which advocates say should be addressed in separate legislation.`,
       category: "politics",
-      sources: ["The Washington Post", "Wired", "Associated Press"],
+      sources: [{ name: "The Washington Post", url: "" }, { name: "Wired", url: "" }, { name: "Associated Press", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "The Atlantic", url: "" }],
+      sourcesRight: [{ name: "Daily Wire", url: "" }, { name: "New York Post", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and The Atlantic have praised the legislation as a landmark civil liberties victory, with particular emphasis on the bill's protections for protesters and religious communities who have historically been subjected to disproportionate surveillance. Left-leaning commentators argue the bill does not go far enough since it leaves private-sector facial recognition entirely unregulated.",
+      perspectiveRight: "The Daily Wire and the New York Post have raised concerns that banning facial recognition at protests will hamper law enforcement's ability to identify violent agitators, framing the restrictions as prioritising civil liberties advocates over public safety. Right-leaning outlets have also questioned why private companies face no equivalent restrictions when the government is being constrained.",
     },
     {
       id: "politics-5",
@@ -108,9 +120,12 @@ The initiative faces opposition from local government associations, which argue 
 
 Housing policy experts noted the significance of the bipartisan framing. "Housing affordability has historically been seen as a progressive issue, but the reality is that high housing costs affect red and blue states equally," said a researcher at a housing policy institute. The coalition plans to introduce legislation in participating states during the next legislative session.`,
       category: "politics",
-      sources: ["Politico", "The Wall Street Journal", "NPR"],
+      sources: [{ name: "Politico", url: "" }, { name: "The Wall Street Journal", url: "" }, { name: "NPR", url: "" }],
+      sourcesLeft: [{ name: "Vox", url: "" }, { name: "Washington Post", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "Wall Street Journal", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "Vox and the Washington Post have welcomed the coalition as long-overdue action on a crisis that disproportionately affects renters, young people, and low-income families. Left-leaning commentators have emphasised the need for robust affordability requirements in any zoning reforms, warning that simply upzoning without affordability mandates will primarily benefit developers rather than working-class families.",
+      perspectiveRight: "National Review and the Wall Street Journal have praised the market-oriented zoning reform elements, arguing that excessive regulation and single-family zoning laws are the primary driver of the housing crisis. Right-leaning outlets have been critical of tax credit proposals, arguing that government subsidies distort the market and that deregulation alone would produce enough housing to bring prices down.",
     },
   ],
   technology: [
@@ -127,13 +142,14 @@ Google DeepMind's contribution, published in Science, builds on its earlier Alph
 
 Pharmaceutical companies have responded with significant interest. Several major drug makers announced partnerships or expanded existing collaborations with both labs. Industry analysts estimate that AI-driven protein design could reduce early-stage drug development timelines from years to months.
 
-Independent researchers praised both advances while noting important limitations. "These are remarkable engineering achievements, but we're still far from AI replacing the full drug development pipeline," cautioned a professor of computational biology at MIT. Clinical trials, regulatory approval, and manufacturing remain significant hurdles.
-
-The dual announcements have also reignited debate about the concentration of AI research capabilities in a small number of well-funded labs, with academic researchers calling for greater openness and data sharing.`,
+Independent researchers praised both advances while noting important limitations. "These are remarkable engineering achievements, but we're still far from AI replacing the full drug development pipeline," cautioned a professor of computational biology at MIT. Clinical trials, regulatory approval, and manufacturing remain significant hurdles.`,
       category: "technology",
-      sources: ["Nature", "Wired", "MIT Technology Review"],
+      sources: [{ name: "Nature", url: "" }, { name: "Wired", url: "" }, { name: "MIT Technology Review", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Vox", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "Forbes", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Vox have highlighted the public health potential of the breakthroughs while raising concerns about whether life-saving treatments developed by private AI labs will be accessible and affordable globally. Left-leaning commentators are calling for government investment in open-source alternatives to ensure the benefits of AI-driven drug discovery are not captured exclusively by large corporations.",
+      perspectiveRight: "National Review and Forbes have framed the announcements as a triumph of private sector innovation and market-driven R&D, arguing that the breakthroughs validate the investment climate that allows companies like OpenAI and DeepMind to operate at the frontier. Right-leaning outlets have cautioned against premature regulatory intervention that could slow development of potentially life-saving treatments.",
     },
     {
       id: "tech-2",
@@ -150,9 +166,12 @@ Consumer advocacy groups offered cautious praise. "These are meaningful steps, b
 
 Tech industry observers noted the global implications. Similar regulations are under consideration in Japan, South Korea, and Brazil, and companies' compliance strategies in Europe are likely to set precedents for these markets.`,
       category: "technology",
-      sources: ["The Verge", "European Commission", "Bloomberg"],
+      sources: [{ name: "The Verge", url: "" }, { name: "European Commission", url: "" }, { name: "Bloomberg", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Wired", url: "" }],
+      sourcesRight: [{ name: "Wall Street Journal", url: "" }, { name: "New York Post", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Wired have praised the EU enforcement actions as a model for holding Big Tech accountable, arguing that the DMA demonstrates that democratically elected governments can successfully rein in monopolistic platform behaviour. Left-leaning commentators have called for the US to adopt similar legislation, warning that without regulation American consumers will continue to be subject to Apple and Meta's unchecked market power.",
+      perspectiveRight: "The Wall Street Journal and New York Post have warned that heavy-handed EU regulation risks undermining the innovation and security that Apple's tightly controlled ecosystem provides, arguing that consumers who want an open platform already have Android. Right-leaning commentators have framed the DMA as European industrial policy designed to disadvantage American tech companies in favour of domestic competitors.",
     },
     {
       id: "tech-3",
@@ -169,9 +188,12 @@ Industry analysts project that the new capacity will bring chip supply and deman
 
 The geopolitical dimensions are significant. The new facilities reduce Western dependence on chip manufacturing concentrated in East Asia, particularly Taiwan. However, critics argue the subsidies amount to corporate welfare and question whether the plants can remain competitive without ongoing government support.`,
       category: "technology",
-      sources: ["Reuters", "Semiconductor Engineering", "Financial Times"],
+      sources: [{ name: "Reuters", url: "" }, { name: "Semiconductor Engineering", url: "" }, { name: "Financial Times", url: "" }],
+      sourcesLeft: [{ name: "Washington Post", url: "" }, { name: "The Atlantic", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "Wall Street Journal", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Washington Post and The Atlantic have framed the new plants as a vindication of industrial policy, arguing that the CHIPS Act demonstrates that strategic government investment can successfully rebuild domestic manufacturing capacity and reduce dangerous supply chain vulnerabilities. Left-leaning commentators have emphasised the union jobs created and called for further investment in clean energy manufacturing along the same model.",
+      perspectiveRight: "National Review and the Wall Street Journal have raised concerns that $52 billion in taxpayer subsidies represents a costly bet on picking industrial winners, warning that without sustained government support these plants may struggle to compete with lower-cost Asian manufacturers. Right-leaning commentators have questioned whether the national security rationale justifies the market distortions introduced by the subsidies.",
     },
     {
       id: "tech-4",
@@ -188,9 +210,12 @@ Internet governance experts noted that similar incidents occur regularly on smal
 
 The incident is expected to accelerate adoption of RPKI and other security measures among internet service providers, though implementation has been slow due to complexity and cost.`,
       category: "technology",
-      sources: ["Ars Technica", "Cloudflare Blog", "The Register"],
+      sources: [{ name: "Ars Technica", url: "" }, { name: "Cloudflare Blog", url: "" }, { name: "The Register", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Wired", url: "" }],
+      sourcesRight: [{ name: "Forbes", url: "" }, { name: "Washington Times", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Wired have used the outage to highlight the fragility of internet infrastructure that billions of people depend on, calling for greater regulatory oversight of backbone providers and mandatory security standards. Left-leaning commentators have argued the incident underscores the risks of concentrating so much of the internet's routing infrastructure in the hands of a small number of private companies with little public accountability.",
+      perspectiveRight: "Forbes and the Washington Times have focused on the rapid recovery as evidence that the internet's decentralised architecture is fundamentally resilient, cautioning against regulatory overreach that could introduce new inefficiencies. Right-leaning commentators have argued that industry-led adoption of RPKI standards will address the vulnerability more effectively than government mandates.",
     },
     {
       id: "tech-5",
@@ -207,9 +232,12 @@ Independent experts were cautiously optimistic. Leading quantum researchers at s
 
 The announcement sent QubitCore's stock up 34% in after-hours trading and boosted shares of other quantum computing companies. Analysts caution that commercially useful quantum computers likely remain 5-10 years away, but said the milestone validates the fundamental approach.`,
       category: "technology",
-      sources: ["MIT Technology Review", "Nature Physics", "CNBC"],
+      sources: [{ name: "MIT Technology Review", url: "" }, { name: "Nature Physics", url: "" }, { name: "CNBC", url: "" }],
+      sourcesLeft: [{ name: "Vox", url: "" }, { name: "The Atlantic", url: "" }],
+      sourcesRight: [{ name: "Forbes", url: "" }, { name: "National Review", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "Vox and The Atlantic have highlighted the transformative potential of quantum computing for climate modelling, drug discovery, and materials science, while calling for increased public funding to ensure the US remains competitive. Left-leaning commentators have raised concerns about the national security implications of quantum computing, particularly around the threat to current encryption standards that protect everything from personal data to government communications.",
+      perspectiveRight: "Forbes and National Review have celebrated the milestone as a triumph of venture-backed private sector innovation, arguing it demonstrates the superiority of the US startup ecosystem over state-directed research programmes. Right-leaning outlets have focused on the geopolitical dimensions, framing quantum supremacy as a critical front in technological competition with China and calling for export controls on key quantum hardware.",
     },
   ],
   business: [
@@ -228,9 +256,12 @@ Not all economists share the optimism. Some analysts warned that persistent stre
 
 The potential rate cuts would provide relief to mortgage borrowers and businesses with variable-rate debt, and could stimulate housing market activity that has been subdued by elevated borrowing costs. However, savers and retirees who have benefited from higher yields on fixed-income investments would see returns diminish.`,
       category: "business",
-      sources: ["Financial Times", "Bloomberg", "The Wall Street Journal"],
+      sources: [{ name: "Financial Times", url: "" }, { name: "Bloomberg", url: "" }, { name: "The Wall Street Journal", url: "" }],
+      sourcesLeft: [{ name: "New York Times", url: "" }, { name: "Washington Post", url: "" }],
+      sourcesRight: [{ name: "Wall Street Journal", url: "" }, { name: "Fox Business", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The New York Times and Washington Post have emphasised the relief rate cuts will provide to working families locked out of the housing market by high mortgage rates, framing the Fed's signal as good news for ordinary Americans who have borne the brunt of the inflation-fighting cycle. Left-leaning commentators have urged the Fed to move quickly to avoid unnecessarily prolonging economic pain for lower-income households.",
+      perspectiveRight: "The Wall Street Journal and Fox Business have cautioned against premature rate cuts, warning that declaring victory on inflation too soon could repeat the mistakes of the 1970s and trigger a second inflationary wave. Right-leaning commentators have argued the Fed has kept rates too high for too long but also should not rush cuts given persistent services inflation and a still-tight labour market.",
     },
     {
       id: "biz-2",
@@ -247,9 +278,12 @@ Healthcare industry analysts are divided. Some see Amazon's entry as potentially
 
 Amazon's stock rose 3.2% on the news, while shares of competing healthcare chains and pharmacy companies declined. The deal requires regulatory approval and is expected to close in late 2026 or early 2027 if approved.`,
       category: "business",
-      sources: ["CNBC", "The Wall Street Journal", "Reuters"],
+      sources: [{ name: "CNBC", url: "" }, { name: "The Wall Street Journal", url: "" }, { name: "Reuters", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Mother Jones", url: "" }],
+      sourcesRight: [{ name: "Forbes", url: "" }, { name: "New York Post", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Mother Jones have sounded alarm bells about the deal, arguing that allowing Amazon to vertically integrate across pharmacy, telehealth, and in-person care creates an unprecedented concentration of power over American healthcare. Left-leaning commentators are calling on the FTC to block the acquisition, warning that Amazon's health data collection practices pose serious privacy risks and that profit motives are incompatible with equitable healthcare delivery.",
+      perspectiveRight: "Forbes and the New York Post have framed the acquisition as a disruptive market entry that could force the bloated and inefficient healthcare industry to modernise, arguing Amazon's logistics and technology expertise could genuinely drive down costs. Right-leaning commentators have pushed back on antitrust concerns, contending that the healthcare market is so fragmented that Amazon's entry will increase competition rather than reduce it.",
     },
     {
       id: "biz-3",
@@ -266,9 +300,12 @@ Shipping companies have benefited from the higher rates, with Maersk, MSC, and C
 
 Economists estimate the disruptions are adding 0.3-0.5 percentage points to goods inflation in Europe and 0.1-0.2 points in the United States. Central bankers have acknowledged the impact but described it as a "supply shock" rather than a reason to alter monetary policy trajectories.`,
       category: "business",
-      sources: ["Financial Times", "Lloyd's List", "Bloomberg"],
+      sources: [{ name: "Financial Times", url: "" }, { name: "Lloyd's List", url: "" }, { name: "Bloomberg", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Washington Post", url: "" }],
+      sourcesRight: [{ name: "Wall Street Journal", url: "" }, { name: "Fox Business", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Washington Post have connected the shipping disruptions to broader questions about the fragility of globalised supply chains and the need for more resilient, regionalised production. Left-leaning commentators have highlighted the inflationary impact on consumer goods prices and called for greater international cooperation on maritime security and a diplomatic resolution to the underlying geopolitical conflict driving the attacks.",
+      perspectiveRight: "The Wall Street Journal and Fox Business have framed the Red Sea crisis as a symptom of inadequate Western deterrence in the region, arguing that a stronger military response would have ended the disruptions sooner. Right-leaning commentators have criticised the administration's handling of the situation and emphasised the economic damage being done to American importers and consumers by the prolonged instability.",
     },
     {
       id: "biz-4",
@@ -285,9 +322,12 @@ The Belgian experience has attracted attention from policymakers across Europe. 
 
 Business groups remain divided. Some employers' associations have embraced the flexibility, while others argue it's inappropriate for the government to dictate work schedules. "The right arrangement varies by company and role," said the head of Belgium's main employers' federation. "Legislation is too blunt an instrument for something this nuanced."`,
       category: "business",
-      sources: ["Reuters", "The Economist", "Politico Europe"],
+      sources: [{ name: "Reuters", url: "" }, { name: "The Economist", url: "" }, { name: "Politico Europe", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "HuffPost", url: "" }],
+      sourcesRight: [{ name: "The Spectator", url: "" }, { name: "Forbes", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and HuffPost have celebrated the Belgian results as compelling evidence that the four-day week is good for workers and businesses alike, calling on other governments to legislate rather than wait for voluntary employer adoption. Left-leaning commentators have argued the productivity data demolishes the argument that longer hours equal more output and have framed the policy as a step toward reclaiming workers' time from corporate interests.",
+      perspectiveRight: "The Spectator and Forbes have questioned the reliability of government-published data and cautioned against extrapolating Belgium's results to other economies with different industrial compositions. Right-leaning commentators have argued that work schedule decisions should be left to employers and employees to negotiate freely, warning that legislative mandates will create rigidities that harm sectors where flexibility and availability are critical.",
     },
     {
       id: "biz-5",
@@ -304,9 +344,12 @@ Skeptics caution that the rally bears hallmarks of previous speculative cycles. 
 
 Regulatory frameworks continue to evolve. The EU's Markets in Crypto-Assets regulation is now fully in effect, providing clearer rules for institutional participation. In the US, ongoing regulatory uncertainty under the current administration has been a source of both risk and opportunity for the industry.`,
       category: "business",
-      sources: ["Bloomberg", "CoinDesk", "Financial Times"],
+      sources: [{ name: "Bloomberg", url: "" }, { name: "CoinDesk", url: "" }, { name: "Financial Times", url: "" }],
+      sourcesLeft: [{ name: "New York Times", url: "" }, { name: "The Guardian", url: "" }],
+      sourcesRight: [{ name: "Forbes", url: "" }, { name: "Wall Street Journal", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The New York Times and The Guardian have raised concerns about the environmental impact of Bitcoin mining and the systemic risks posed by sovereign wealth funds allocating to a volatile speculative asset. Left-leaning commentators have questioned whether government pension funds have a fiduciary duty to chase speculative returns and called for stronger consumer protections given the likelihood that retail investors will be left holding losses when the cycle turns.",
+      perspectiveRight: "Forbes and the Wall Street Journal have framed Bitcoin's rise as a rational response to government currency debasement and fiscal irresponsibility, arguing that institutional adoption reflects a legitimate search for a store of value outside the traditional financial system. Right-leaning commentators have praised the Trump administration's more permissive approach to crypto regulation as unleashing investment and positioning the US as a global hub for digital assets.",
     },
   ],
   world: [
@@ -325,9 +368,12 @@ Critics on both sides have raised concerns. European labor unions worry about wa
 
 The climate adaptation fund, financed jointly by EU member states and private sector commitments, will focus on renewable energy infrastructure, drought-resistant agriculture, and coastal protection in the most vulnerable African nations. Projects are expected to begin disbursement by late 2026.`,
       category: "world",
-      sources: ["Reuters", "Al Jazeera", "Financial Times"],
+      sources: [{ name: "Reuters", url: "" }, { name: "Al Jazeera", url: "" }, { name: "Financial Times", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Washington Post", url: "" }],
+      sourcesRight: [{ name: "Daily Wire", url: "" }, { name: "Breitbart", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Washington Post have praised the deal's climate adaptation fund and legal migration pathways as a progressive step toward addressing the root causes of irregular migration and supporting African development. Left-leaning commentators have focused on the climate finance commitments as a model for global solidarity, while civil society groups are pushing for the legal visa quotas to be expanded significantly.",
+      perspectiveRight: "The Daily Wire and Breitbart have raised concerns that the agreement's migration provisions will increase pressure on European labour markets and social services, framing the deal as prioritising the interests of corporations seeking cheap labour over European workers. Right-leaning commentators have argued the deportation cooperation elements don't go far enough and questioned whether African governments will honour their commitments.",
     },
     {
       id: "world-2",
@@ -344,9 +390,12 @@ The United States welcomed the move, with the Pentagon describing it as "a posit
 
 Domestic opinion in Japan remains divided. Polls show roughly 52% of Japanese citizens support increased defense spending, while significant opposition remains, particularly among older generations who remember the consequences of militarism. Constitutional scholars have questioned whether the long-range strike capability is compatible with Article 9 of Japan's constitution.`,
       category: "world",
-      sources: ["Associated Press", "NHK", "South China Morning Post"],
+      sources: [{ name: "Associated Press", url: "" }, { name: "NHK", url: "" }, { name: "South China Morning Post", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "The Atlantic", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "Wall Street Journal", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and The Atlantic have highlighted domestic opposition to Japan's remilitarisation, emphasising the constitutional concerns raised by legal scholars and the historical weight of Japan's pacifist identity. Left-leaning commentators have warned that the military buildup risks escalating regional tensions rather than deterring them, and have called for diplomatic engagement with China as a complement to any security measures.",
+      perspectiveRight: "National Review and the Wall Street Journal have strongly welcomed Japan's defence overhaul as a long-overdue recognition of the threat environment in the Indo-Pacific, arguing that deterrence requires credible military capability. Right-leaning commentators have praised the US-Japan alliance deepening and called on other regional allies to follow Japan's lead in increasing defence spending to counter Chinese and North Korean aggression.",
     },
     {
       id: "world-3",
@@ -361,9 +410,12 @@ Regional analysts characterized the resumption of dialogue as significant in its
 
 Pakistan's foreign ministry emphasized the importance of addressing "core disputes" for lasting peace, while India's external affairs ministry focused on the need for "a terrorism-free environment" as a prerequisite for deeper engagement. Both sides agreed to continue discussions at a date to be determined.`,
       category: "world",
-      sources: ["Associated Press", "Dawn", "The Hindu"],
+      sources: [{ name: "Associated Press", url: "" }, { name: "Dawn", url: "" }, { name: "The Hindu", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Al Jazeera", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "Washington Times", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Al Jazeera have welcomed the talks as a hopeful step toward reducing tensions between two nuclear powers, emphasising the humanitarian dimension and the suffering of divided families. Left-leaning commentators have called for international facilitation to help move the dialogue beyond confidence-building measures toward substantive progress on Kashmir and trade normalisation.",
+      perspectiveRight: "National Review and the Washington Times have expressed scepticism that the talks will produce meaningful results given Pakistan's historical links to militant groups, arguing that India is right to insist on a terrorism-free environment as a prerequisite. Right-leaning commentators have framed the engagement as a test of whether Pakistan's civilian government has genuine authority over the military establishment that has long sabotaged diplomacy.",
     },
     {
       id: "world-4",
@@ -380,9 +432,12 @@ Indigenous rights organizations celebrated the ruling as historic. Leaders from 
 
 The ruling does not automatically resolve individual land disputes but establishes the legal framework under which they will be adjudicated. The government now faces the challenge of implementing demarcation processes while managing tensions between indigenous communities and established agricultural operations.`,
       category: "world",
-      sources: ["Reuters", "Folha de São Paulo", "The Guardian"],
+      sources: [{ name: "Reuters", url: "" }, { name: "Folha de São Paulo", url: "" }, { name: "The Guardian", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Washington Post", url: "" }],
+      sourcesRight: [{ name: "Forbes", url: "" }, { name: "Wall Street Journal", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Washington Post have celebrated the ruling as a historic victory for indigenous rights and environmental protection, highlighting research showing that indigenous-managed territories have significantly lower deforestation rates than surrounding areas. Left-leaning commentators have framed the decision as a rebuke of the Bolsonaro-era push to open indigenous lands to agricultural and mining interests.",
+      perspectiveRight: "Forbes and the Wall Street Journal have raised concerns about the ruling's implications for Brazilian agricultural output and food exports, warning that uncertainty over land rights could chill investment in one of the world's most important farming regions. Right-leaning commentators have argued the decision prioritises the interests of a small indigenous population over the food security needs of millions of Brazilians and global consumers.",
     },
     {
       id: "world-5",
@@ -397,17 +452,25 @@ Vaccination campaigns, which reached over 12 million people in the Democratic Re
 
 Public health experts praised the response but noted lessons for future outbreaks. The initial vaccine rollout faced significant delays due to manufacturing bottlenecks and distribution challenges in remote areas. Several NGOs called for permanent investment in regional health infrastructure rather than emergency-only funding models.`,
       category: "world",
-      sources: ["WHO", "BBC News", "The Lancet"],
+      sources: [{ name: "WHO", url: "" }, { name: "BBC News", url: "" }, { name: "The Lancet", url: "" }],
+      sourcesLeft: [{ name: "The Guardian", url: "" }, { name: "Washington Post", url: "" }],
+      sourcesRight: [{ name: "National Review", url: "" }, { name: "Washington Times", url: "" }],
       timestamp: now,
-
+      perspectiveLeft: "The Guardian and Washington Post have praised the WHO's coordinated response while emphasising that the initial delays in vaccine distribution exposed deep inequities in global health infrastructure. Left-leaning commentators have called for permanent, adequately funded regional health systems in Africa rather than the current model of emergency responses, arguing that wealthy nations have a responsibility to finance this investment.",
+      perspectiveRight: "National Review and the Washington Times have highlighted the successful outcome as evidence that targeted, science-based interventions work, while questioning the cost-effectiveness of WHO operations and calling for reform of the organisation's governance. Right-leaning commentators have focused on the importance of domestic pharmaceutical manufacturing capacity, arguing that African nations should not be dependent on foreign supply chains for critical vaccines.",
     },
   ],
 };
 
-// Add slugs to all mock articles
+// Add slugs and default empty perspective sources to all mock articles
 export const MOCK_ARTICLES: Record<Category, Article[]> = Object.fromEntries(
   Object.entries(RAW_ARTICLES).map(([cat, articles]) => [
     cat,
-    articles.map((a) => ({ ...a, slug: slugify(a.headline) })),
+    articles.map((a) => ({
+      ...a,
+      sourcesLeft: a.sourcesLeft ?? [],
+      sourcesRight: a.sourcesRight ?? [],
+      slug: slugify(a.headline),
+    })),
   ])
 ) as Record<Category, Article[]>;

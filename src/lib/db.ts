@@ -1,6 +1,6 @@
 import { getSupabase } from "./supabase";
 import { getServiceClient } from "./supabase-admin";
-import { Article, Category, CATEGORIES, FeedbackSummary } from "./types";
+import { Article, ArticleSource, Category, CATEGORIES, FeedbackSummary } from "./types";
 
 // ─── Utilities ───────────────────────────────────────────
 
@@ -16,6 +16,14 @@ export function slugify(headline: string): string {
 }
 
 function rowToArticle(row: Record<string, unknown>): Article {
+  // Prefer source_links JSONB over legacy sources text[]
+  let sources: ArticleSource[];
+  if (row.source_links && Array.isArray(row.source_links) && (row.source_links as unknown[]).length > 0) {
+    sources = row.source_links as ArticleSource[];
+  } else {
+    sources = ((row.sources as string[]) || []).map((name) => ({ name, url: "" }));
+  }
+
   return {
     id: row.id as string,
     slug: row.slug as string,
@@ -23,8 +31,12 @@ function rowToArticle(row: Record<string, unknown>): Article {
     summary: row.summary as string,
     body: row.body as string,
     category: row.category as Category,
-    sources: (row.sources as string[]) || [],
+    sources,
+    sourcesLeft: (row.source_links_left as ArticleSource[]) || [],
+    sourcesRight: (row.source_links_right as ArticleSource[]) || [],
     timestamp: row.published_at as string,
+    perspectiveLeft: (row.perspective_left as string) || undefined,
+    perspectiveRight: (row.perspective_right as string) || undefined,
   };
 }
 
@@ -118,7 +130,11 @@ export async function insertArticles(
     summary: string;
     body: string;
     category: Category;
-    sources: string[];
+    sources: ArticleSource[];
+    sourcesLeft?: ArticleSource[];
+    sourcesRight?: ArticleSource[];
+    perspectiveLeft?: string;
+    perspectiveRight?: string;
   }[]
 ): Promise<void> {
   const admin = getServiceClient();
@@ -129,8 +145,13 @@ export async function insertArticles(
     summary: a.summary,
     body: a.body,
     category: a.category,
-    sources: a.sources,
+    sources: a.sources.map((s) => s.name), // keep legacy text[] for compat
+    source_links: a.sources,
+    source_links_left: a.sourcesLeft || [],
+    source_links_right: a.sourcesRight || [],
     published_at: new Date().toISOString(),
+    perspective_left: a.perspectiveLeft || null,
+    perspective_right: a.perspectiveRight || null,
   }));
 
   const { error } = await admin.from("articles").insert(rows);

@@ -18,15 +18,16 @@ export default async function HomePage() {
       {/* Hero Section */}
       {heroStory && (
         <section className="border-b border-neutral-300 pb-8 mb-8">
+          <div className="flex items-center justify-between border-b-2 border-signal-red pb-2 mb-6">
+            <h2 className="font-headline text-2xl font-bold text-signal-red">Featured</h2>
+          </div>
+          <div className="mb-8 pb-8 border-b border-neutral-200">
+            <ArticleCard article={heroStory} featured />
+          </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-              <ArticleCard article={heroStory} featured />
-            </div>
-            <div className="border-l-0 md:border-l border-neutral-200 md:pl-8 space-y-6">
-              {restTopStories.slice(0, 3).map((article) => (
-                <ArticleCard key={article.id} article={article} />
-              ))}
-            </div>
+            {restTopStories.slice(0, 3).map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))}
           </div>
         </section>
       )}
