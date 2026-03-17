@@ -15,6 +15,10 @@ export default function ArticleCard({
     timeZone: "Australia/Sydney",
   });
 
+  const firstBodyParagraph = featured
+    ? article.body.split(/\n\n|\n/).find((p) => p.trim().length > 0) || ""
+    : "";
+
   return (
     <article
       className={`group ${featured ? "" : "border-b border-neutral-200 pb-6"}`}
@@ -29,6 +33,10 @@ export default function ArticleCard({
         </h3>
 
         <p className="text-neutral-600 text-sm mb-3 leading-relaxed">{article.summary}</p>
+
+        {featured && firstBodyParagraph && (
+          <p className="text-neutral-700 text-base leading-relaxed mb-3">{firstBodyParagraph}</p>
+        )}
 
         <div className="flex items-center gap-3 text-xs text-neutral-400">
           <time>{formattedTime}</time>

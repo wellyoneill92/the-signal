@@ -1,10 +1,36 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getArticleBySlug, getArticleById, getRelatedArticles } from "@/lib/articles";
-import { CATEGORIES } from "@/lib/types";
+import { CATEGORIES, ArticleSource } from "@/lib/types";
 import ArticleCard from "@/components/ArticleCard";
-import ArticleAudioPlayer from "@/components/ArticleAudioPlayer";
 import ArticleFeedback from "@/components/ArticleFeedback";
+
+function SourcePills({ sources }: { sources: ArticleSource[] }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {sources.map((source) =>
+        source.url ? (
+          <a
+            key={source.name}
+            href={source.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs text-signal-red bg-neutral-100 px-3 py-1 rounded-full hover:bg-neutral-200 transition-colors font-sans"
+          >
+            {source.name} ↗
+          </a>
+        ) : (
+          <span
+            key={source.name}
+            className="text-xs text-neutral-500 bg-neutral-100 px-3 py-1 rounded-full font-sans"
+          >
+            {source.name}
+          </span>
+        )
+      )}
+    </div>
+  );
+}
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const article = await getArticleBySlug(params.id) || await getArticleById(params.id);
@@ -71,11 +97,11 @@ export default async function ArticlePage({ params }: { params: { id: string } }
         </div>
       </header>
 
-      {/* Audio Player */}
-      <ArticleAudioPlayer headline={article.headline} body={article.body} />
-
-      {/* Article Body */}
-      <div className="mb-12">
+      {/* The Facts */}
+      <div className="mb-10">
+        <div className="flex items-center justify-between border-b-2 border-signal-black pb-2 mb-6">
+          <h2 className="font-headline text-2xl font-bold">The Facts</h2>
+        </div>
         {article.body.split("\n\n").map((paragraph, i) => (
           <p
             key={i}
@@ -88,22 +114,29 @@ export default async function ArticlePage({ params }: { params: { id: string } }
         ))}
       </div>
 
-      {/* Sources */}
-      {article.sources.length > 0 && (
-        <div className="border-t border-neutral-200 pt-6 mb-12">
-          <h4 className="text-xs text-neutral-400 uppercase tracking-widest font-sans mb-2">
-            Sources
-          </h4>
-          <div className="flex flex-wrap gap-2">
-            {article.sources.map((source) => (
-              <span
-                key={source}
-                className="text-sm text-neutral-600 bg-neutral-100 px-3 py-1 rounded-full"
-              >
-                {source}
-              </span>
-            ))}
+      {/* The Left's View */}
+      {article.perspectiveLeft && (
+        <div className="mb-10">
+          <div className="flex items-center justify-between border-b-2 border-signal-black pb-2 mb-6">
+            <h2 className="font-headline text-2xl font-bold">The Left&apos;s View</h2>
           </div>
+          <p className="text-neutral-800 leading-[1.85] text-[17px] mb-6">{article.perspectiveLeft}</p>
+          {(article.sourcesLeft ?? []).length > 0 && (
+            <SourcePills sources={article.sourcesLeft!} />
+          )}
+        </div>
+      )}
+
+      {/* The Right's View */}
+      {article.perspectiveRight && (
+        <div className="mb-10">
+          <div className="flex items-center justify-between border-b-2 border-signal-black pb-2 mb-6">
+            <h2 className="font-headline text-2xl font-bold">The Right&apos;s View</h2>
+          </div>
+          <p className="text-neutral-800 leading-[1.85] text-[17px] mb-6">{article.perspectiveRight}</p>
+          {(article.sourcesRight ?? []).length > 0 && (
+            <SourcePills sources={article.sourcesRight!} />
+          )}
         </div>
       )}
 

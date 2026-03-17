@@ -1,16 +1,152 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { Category, CATEGORIES } from "./types";
+import { Category, CATEGORIES, ArticleSource } from "./types";
 import { slugify, insertArticles } from "./db";
 
 const client = new Anthropic();
+
+const webSearchTool = (max_uses: number) => ({
+  type: "web_search_20250305" as const,
+  name: "web_search" as const,
+  max_uses,
+});
 
 function getCategoryInfo(category: Category) {
   return CATEGORIES.find((c) => c.slug === category)!;
 }
 
-export async function generateArticlesForCategory(category: Category): Promise<void> {
+// Extract the final text block from a response (after tool use)
+function extractText(response: Anthropic.Message): string {
+  return response.content
+    .filter((b) => b.type === "text")
+    .map((b) => (b as Anthropic.TextBlock).text)
+    .join("");
+}
+
+// Parse JSON from a response, stripping markdown fencing and preamble
+function parseJson(raw: string): unknown {
+  let text = raw.trim();
+  if (text.includes("```")) {
+    const match = text.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if (match) text = match[1].trim();
+  }
+  // Find the first { or [ and the last matching closer
+  const objStart = text.indexOf("{");
+  const arrStart = text.indexOf("[");
+  const start = objStart !== -1 && (arrStart === -1 || objStart < arrStart) ? objStart : arrStart;
+  const isArr = text[start] === "[";
+  const end = isArr ? text.lastIndexOf("]") : text.lastIndexOf("}");
+  if (start !== -1 && end !== -1) text = text.slice(start, end + 1);
+  return JSON.parse(text);
+}
+
+function stripCites(text: string): string {
+  return text.replace(/<\/?cite[^>]*>/g, "");
+}
+
+function parseSources(raw: unknown[]): ArticleSource[] {
+  return raw.map((s) => {
+    if (typeof s === "string") return { name: stripCites(s), url: "" };
+    const src = s as Record<string, string>;
+    return { name: stripCites(src.name || ""), url: src.url || "" };
+  });
+}
+
+// ─── Step 1: Find the story and extract consensus facts ───────────────────────
+async function fetchFacts(category: Category, today: string): Promise<{
+  headline: string;
+  summary: string;
+  body: string;
+  sources: ArticleSource[];
+}> {
   const categoryInfo = getCategoryInfo(category);
-  // Use AEST timezone for date display and slug generation
+
+  const response = await client.messages.create({
+    model: "claude-sonnet-4-20250514", // Sonnet for fact-finding: needs broad reasoning + source quality judgement
+    max_tokens: 8000,
+    tools: [webSearchTool(8)],
+    messages: [{
+      role: "user",
+      content: `You are a fact-extraction engine for "The Signal", an impartial news aggregator. Today is ${today}.
+
+Your task: Find the single most important ${categoryInfo.label.toLowerCase()} story breaking TODAY and extract only the facts that are consistent and agreed upon across the entire media spectrum — left, right, and centre.
+
+Search broadly across many different outlets. Use multiple searches. Look for:
+- What actually happened (the event, decision, or development)
+- Who was involved and in what capacity
+- Verified numbers, data, official statements, and confirmed outcomes
+- Context that is not in dispute anywhere
+
+Write ONLY what is factually verifiable and consistent across coverage regardless of political leaning. If something is contested, spun differently, or only reported by one side — leave it out. No framing, no interpretation, no editorial colour.
+
+Respond with ONLY a JSON object (no markdown fencing, no explanation):
+{
+  "headline": "Clear, factual headline — informative not clickbait",
+  "summary": "2-3 sentence neutral summary of confirmed facts only",
+  "body": "4-6 paragraphs of consensus facts. Neutral AP/Reuters tone. Separate paragraphs with \\n\\n",
+  "sources": [{"name": "Publication Name", "url": "https://actual-article-url"}]
+}`,
+    }],
+  });
+
+  const text = extractText(response);
+  const parsed = parseJson(text) as Record<string, unknown>;
+
+  return {
+    headline: stripCites(parsed.headline as string),
+    summary: stripCites(parsed.summary as string),
+    body: stripCites(parsed.body as string),
+    sources: parseSources((parsed.sources as unknown[]) || []),
+  };
+}
+
+// ─── Step 2: Left + Right perspectives (single Haiku call) ────────────────────
+async function fetchPerspectives(headline: string, summary: string): Promise<{
+  perspectiveLeft: string;
+  sourcesLeft: ArticleSource[];
+  perspectiveRight: string;
+  sourcesRight: ArticleSource[];
+}> {
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001", // Haiku: ~4x cheaper, sufficient for targeted search + summarise
+    max_tokens: 4000,
+    tools: [webSearchTool(6)], // 3 searches per side is plenty for perspective coverage
+    messages: [{
+      role: "user",
+      content: `You are researching how left-leaning and right-leaning media are covering a news story.
+
+Story: "${headline}"
+Summary: ${summary}
+
+Do TWO sets of searches:
+
+1. LEFT-LEANING outlets: The Guardian, New York Times, Washington Post, MSNBC, Vox, HuffPost, Mother Jones, The Atlantic.
+2. RIGHT-LEANING outlets: Fox News, New York Post, The Daily Wire, Breitbart, National Review, Washington Times, The Federalist.
+
+For each side, find actual articles and summarise in 3-4 sentences: what angle they take, what they emphasise, and which outlets you found. Record the real article URLs.
+
+Respond with ONLY a JSON object (no markdown fencing):
+{
+  "perspective_left": "3-4 sentences on left-leaning framing, naming specific outlets",
+  "sources_left": [{"name": "Publication", "url": "https://article-url"}],
+  "perspective_right": "3-4 sentences on right-leaning framing, naming specific outlets",
+  "sources_right": [{"name": "Publication", "url": "https://article-url"}]
+}`,
+    }],
+  });
+
+  const text = extractText(response);
+  const parsed = parseJson(text) as Record<string, unknown>;
+
+  return {
+    perspectiveLeft: stripCites(parsed.perspective_left as string),
+    sourcesLeft: parseSources((parsed.sources_left as unknown[]) || []),
+    perspectiveRight: stripCites(parsed.perspective_right as string),
+    sourcesRight: parseSources((parsed.sources_right as unknown[]) || []),
+  };
+}
+
+// ─── Main export ──────────────────────────────────────────────────────────────
+export async function generateArticlesForCategory(category: Category): Promise<void> {
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
@@ -18,102 +154,29 @@ export async function generateArticlesForCategory(category: Category): Promise<v
     day: "numeric",
     timeZone: "Australia/Sydney",
   });
+  const datePrefix = new Date().toLocaleDateString("en-CA", { timeZone: "Australia/Sydney" });
 
-  const response = await client.messages.create({
-    model: "claude-sonnet-4-20250514",
-    max_tokens: 16000,
-    tools: [
-      {
-        type: "web_search_20250305",
-        name: "web_search",
-        max_uses: 10,
-      },
-    ],
-    messages: [
-      {
-        role: "user",
-        content: `You are a senior news editor for "The Signal", an impartial news aggregator. Today is ${today}.
+  console.log(`[${category}] Step 1: Extracting consensus facts...`);
+  const facts = await fetchFacts(category, today);
 
-Search for the most important ${categoryInfo.label.toLowerCase()} news story from TODAY. Focus on: ${categoryInfo.description}.
+  console.log(`[${category}] Step 2: Fetching left + right perspectives...`);
+  const perspectives = await fetchPerspectives(facts.headline, facts.summary);
 
-Search for the very latest breaking news and developments from the last few hours. Use multiple searches to find the most current story. Prioritise stories that are actively developing right now over older stories.
+  const article = {
+    slug: `${slugify(facts.headline)}-${datePrefix}`,
+    headline: facts.headline,
+    summary: facts.summary,
+    body: facts.body,
+    category,
+    sources: facts.sources,
+    sourcesLeft: perspectives.sourcesLeft,
+    sourcesRight: perspectives.sourcesRight,
+    perspectiveLeft: perspectives.perspectiveLeft,
+    perspectiveRight: perspectives.perspectiveRight,
+  };
 
-Find 1 significant news story. Search for multiple sources to ensure balanced coverage.
-
-After researching, respond with ONLY a JSON array (no markdown fencing, no explanation) of exactly 1 article in this format:
-[
-  {
-    "headline": "Clear, factual headline (no sensationalism)",
-    "summary": "2-3 sentence neutral summary of the story",
-    "body": "4-6 paragraph comprehensive article written in neutral, factual journalistic tone. Present multiple perspectives where applicable. Include relevant context, data, and quotes from sources. Each paragraph should be separated by \\n\\n",
-    "sources": ["source name 1", "source name 2"]
-  }
-]
-
-Guidelines:
-- Write in the style of Reuters or AP News — neutral, factual, no opinion
-- Present multiple sides of controversial topics
-- Headlines should be informative, not clickbait
-- The article body should be substantive (4-6 paragraphs)`,
-      },
-    ],
-  });
-
-  // Extract the text response (after tool use)
-  let jsonText = "";
-  for (const block of response.content) {
-    if (block.type === "text") {
-      jsonText += block.text;
-    }
-  }
-
-  // Parse the JSON from the response
-  jsonText = jsonText.trim();
-  // Remove markdown code fencing if present
-  if (jsonText.includes("```")) {
-    const match = jsonText.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (match) jsonText = match[1].trim();
-  }
-  // Extract JSON array if there's preamble text before it
-  const arrayStart = jsonText.indexOf("[");
-  const arrayEnd = jsonText.lastIndexOf("]");
-  if (arrayStart !== -1 && arrayEnd !== -1 && arrayStart < arrayEnd) {
-    jsonText = jsonText.slice(arrayStart, arrayEnd + 1);
-  }
-
-  let articles: {
-    slug: string;
-    headline: string;
-    summary: string;
-    body: string;
-    category: Category;
-    sources: string[];
-  }[];
-
-  try {
-    const parsed = JSON.parse(jsonText);
-    // Use AEST date for slug so it matches the local publication date
-    const datePrefix = new Date().toLocaleDateString("en-CA", { timeZone: "Australia/Sydney" }); // e.g. "2026-02-13"
-
-    // Strip <cite> tags injected by the web_search tool
-    const stripCites = (text: string) => text.replace(/<\/?cite[^>]*>/g, "");
-
-    articles = parsed.map((item: Record<string, unknown>) => ({
-      slug: `${slugify(item.headline as string)}-${datePrefix}`,
-      headline: stripCites(item.headline as string),
-      summary: stripCites(item.summary as string),
-      body: stripCites(item.body as string),
-      category,
-      sources: (item.sources as string[]) || [],
-    }));
-  } catch {
-    console.error("Failed to parse news response:", jsonText.substring(0, 500));
-    throw new Error("Failed to parse AI-generated news articles");
-  }
-
-  // Insert into Supabase
-  await insertArticles(articles);
-  console.log(`Inserted ${articles.length} article(s) for ${category}`);
+  await insertArticles([article]);
+  console.log(`[${category}] Done — inserted "${facts.headline}"`);
 }
 
 export async function generateAllArticles(): Promise<void> {
@@ -126,7 +189,7 @@ export async function generateAllArticles(): Promise<void> {
     } catch (error) {
       console.error(`Failed to generate articles for ${cat}:`, error);
     }
-    // Wait 90s between categories to stay within rate limits (30k input tokens/min)
+    // Wait 90s between categories to stay within rate limits
     if (i < categories.length - 1) {
       console.log("Waiting 90s for rate limit cooldown...");
       await new Promise((r) => setTimeout(r, 90_000));

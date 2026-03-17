@@ -1,3 +1,8 @@
+export interface ArticleSource {
+  name: string;
+  url: string;
+}
+
 export interface Article {
   id: string;
   slug: string;
@@ -5,8 +10,12 @@ export interface Article {
   summary: string;
   body: string;
   category: Category;
-  sources: string[];
+  sources: ArticleSource[];        // general fact-finding sources
+  sourcesLeft?: ArticleSource[];   // sources cited in left perspective
+  sourcesRight?: ArticleSource[];  // sources cited in right perspective
   timestamp: string;
+  perspectiveLeft?: string;
+  perspectiveRight?: string;
 }
 
 export type Category = "politics" | "technology" | "business" | "world";
