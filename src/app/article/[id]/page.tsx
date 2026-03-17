@@ -3,7 +3,6 @@ import Link from "next/link";
 import { getArticleBySlug, getArticleById, getRelatedArticles } from "@/lib/articles";
 import { CATEGORIES, ArticleSource } from "@/lib/types";
 import ArticleCard from "@/components/ArticleCard";
-import ArticleAudioPlayer from "@/components/ArticleAudioPlayer";
 import ArticleFeedback from "@/components/ArticleFeedback";
 
 function SourcePills({ sources }: { sources: ArticleSource[] }) {
@@ -97,9 +96,6 @@ export default async function ArticlePage({ params }: { params: { id: string } }
           <span>The Signal Staff</span>
         </div>
       </header>
-
-      {/* Audio Player */}
-      <ArticleAudioPlayer headline={article.headline} body={article.body} />
 
       {/* The Facts */}
       <div className="mb-10">
