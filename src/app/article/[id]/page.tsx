@@ -4,6 +4,7 @@ import { getArticleBySlug, getArticleById, getRelatedArticles } from "@/lib/arti
 import { CATEGORIES, ArticleSource } from "@/lib/types";
 import ArticleCard from "@/components/ArticleCard";
 import ArticleFeedback from "@/components/ArticleFeedback";
+import ArticleGate from "@/components/ArticleGate";
 
 function SourcePills({ sources }: { sources: ArticleSource[] }) {
   return (
@@ -97,6 +98,8 @@ export default async function ArticlePage({ params }: { params: { id: string } }
         </div>
       </header>
 
+      <ArticleGate articleId={article.id}>
+
       {/* The Facts */}
       <div className="mb-10">
         <div className="flex items-center justify-between border-b-2 border-signal-black pb-2 mb-6">
@@ -166,6 +169,8 @@ export default async function ArticlePage({ params }: { params: { id: string } }
           </div>
         </section>
       )}
+
+      </ArticleGate>
     </div>
   );
 }
